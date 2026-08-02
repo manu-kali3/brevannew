@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import Accordions from "@/components/Accordions";
 import CtaSection from "@/components/CtaSection";
-import Partners from "@/components/Partners";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -79,7 +78,6 @@ export default function AboutUsPage() {
         </div>
       </section>
       <CtaSection />
-      <Partners />
     </>
   );
 }

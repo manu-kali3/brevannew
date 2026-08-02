@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import ContactForm from "@/components/ContactForm";
-import Partners from "@/components/Partners";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -79,7 +78,6 @@ export default function ContactUsPage() {
           </div>
         </div>
       </section>
-      <Partners />
     </>
   );
 }
