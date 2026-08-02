@@ -18,7 +18,7 @@ export default function GlobalError({
             justifyContent: "center",
             textAlign: "center",
             padding: "40px 20px",
-            backgroundColor: "#faf8f4",
+            backgroundColor: "#fff",
             fontFamily: "Poppins, system-ui, sans-serif",
             boxSizing: "border-box",
             margin: 0,
@@ -29,7 +29,7 @@ export default function GlobalError({
               style={{
                 fontSize: 72,
                 fontWeight: 800,
-                color: "#6b3f2a",
+                color: "#ff511a",
                 margin: 0,
                 letterSpacing: 4,
               }}
@@ -38,7 +38,7 @@ export default function GlobalError({
             </h1>
             <h2
               style={{
-                color: "#6b3f2a",
+                color: "#212741",
                 margin: "12px 0 8px",
                 fontWeight: 700,
               }}
@@ -63,7 +63,7 @@ export default function GlobalError({
                 padding: "14px 32px",
                 border: "none",
                 borderRadius: 6,
-                backgroundColor: "#6b3f2a",
+                backgroundColor: "#43ba7f",
                 color: "#fff",
                 fontSize: 15,
                 fontWeight: 600,

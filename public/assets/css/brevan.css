@@ -123,7 +123,7 @@ section.about-us ul.nacc li p {
   justify-content: center;
   text-align: center;
   padding: 80px 20px;
-  background-color: #faf8f4;
+  background-color: #fff;
 }
 
 .error-page .error-inner {
@@ -135,12 +135,12 @@ section.about-us ul.nacc li p {
   font-weight: 800;
   line-height: 1;
   letter-spacing: 6px;
-  color: #6b3f2a;
+  color: #ff511a;
 }
 
 .error-page h1 {
   margin: 24px 0 12px;
-  color: #6b3f2a;
+  color: #212741;
   font-weight: 700;
 }
 
@@ -157,27 +157,33 @@ section.about-us ul.nacc li p {
   gap: 20px;
 }
 
-.brown-button a,
-.brown-button button {
+.green-button button,
+.orange-button button {
   font-size: 14px;
   color: #fff;
-  background-color: #6b3f2a;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 5px;
   font-weight: 500;
   border: none;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   transition: all 0.3s ease 0s;
 }
 
-.brown-button a:hover,
-.brown-button button:hover {
-  background-color: #54301f;
-  color: #fff;
-  opacity: 1;
+.green-button button {
+  background-color: #43ba7f;
+}
+
+.green-button button:hover {
+  opacity: 0.9;
+}
+
+.orange-button button {
+  background-color: #ff511a;
+}
+
+.orange-button button:hover {
+  opacity: 0.9;
 }
 
 @media (max-width: 767px) {

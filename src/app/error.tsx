@@ -24,12 +24,12 @@ export default function ErrorPage({
           again, or contact us if the problem persists.
         </p>
         <div className="error-actions">
-          <div className="brown-button">
+          <div className="green-button">
             <button type="button" onClick={() => reset()}>
               Try Again
             </button>
           </div>
-          <div className="green-button">
+          <div className="orange-button">
             <Link href="/">Back to Home</Link>
           </div>
         </div>

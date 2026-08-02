@@ -11,10 +11,10 @@ export default function NotFound() {
           Let&apos;s get you back on track.
         </p>
         <div className="error-actions">
-          <div className="brown-button">
+          <div className="green-button">
             <Link href="/">Back to Home</Link>
           </div>
-          <div className="green-button">
+          <div className="orange-button">
             <Link href="/contact-us">Contact Us</Link>
           </div>
         </div>
