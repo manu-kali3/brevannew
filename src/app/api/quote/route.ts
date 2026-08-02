@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { storeLead } from "@/lib/supabase";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const toEmail = process.env.CONTACT_EMAIL ?? "brevansoftwares@gmail.com";
@@ -7,13 +8,6 @@ const toEmail = process.env.CONTACT_EMAIL ?? "brevansoftwares@gmail.com";
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
-  if (!resend) {
-    return NextResponse.json(
-      { error: "Email service is not configured yet." },
-      { status: 503 }
-    );
-  }
-
   let body: Record<string, string>;
   try {
     body = await request.json();
@@ -38,24 +32,38 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 
-  const { error } = await resend.emails.send({
-    from: "Brevan Softwares Website <onboarding@resend.dev>",
-    to: [toEmail],
-    replyTo: email,
-    subject: `Quote Request: ${subject || service || "New Quote Request"}`,
-    text: [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Subject: ${subject}`,
-      `Service Needed: ${service}`,
-    ].join("\n"),
-  });
+  let anyDelivered = false;
 
-  if (error) {
-    console.error("Resend error:", error);
+  const stored = await storeLead({
+    type: "quote",
+    name,
+    email,
+    subject,
+    service,
+  });
+  if (stored) anyDelivered = true;
+
+  if (resend) {
+    const { error } = await resend.emails.send({
+      from: "Brevan Softwares Website <onboarding@resend.dev>",
+      to: [toEmail],
+      replyTo: email,
+      subject: `Quote Request: ${subject || service || "New Quote Request"}`,
+      text: [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Subject: ${subject}`,
+        `Service Needed: ${service}`,
+      ].join("\n"),
+    });
+    if (!error) anyDelivered = true;
+    else console.error("Resend error:", error);
+  }
+
+  if (!anyDelivered) {
     return NextResponse.json(
-      { error: "Could not send your request. Please try again." },
-      { status: 500 }
+      { error: "Submissions are not configured yet. Please contact us by email." },
+      { status: 503 }
     );
   }
 
