@@ -116,6 +116,15 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
+                  <Link
+                    href="/projects"
+                    className={navLinkClass(pathname === "/projects")}
+                    onClick={closeMenu}
+                  >
+                    Projects
+                  </Link>
+                </li>
+                <li>
                   <Link href="/contact-us" onClick={closeMenu}>
                     Contact Support
                   </Link>

@@ -86,3 +86,29 @@ export async function listEvents(): Promise<Event[]> {
 
   return (data ?? []) as Event[];
 }
+
+export interface Project {
+  id: string;
+  title: string;
+  category: string | null;
+  description: string | null;
+  image_url: string | null;
+  project_url: string | null;
+  created_at: string;
+}
+
+export async function listProjects(): Promise<Project[]> {
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("projects")
+    .select("id,title,category,description,image_url,project_url,created_at")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Supabase projects query error:", error.message);
+    return [];
+  }
+
+  return (data ?? []) as Project[];
+}
