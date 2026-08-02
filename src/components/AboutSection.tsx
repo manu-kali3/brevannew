@@ -5,112 +5,32 @@ const tabContent = [
   {
     label: "AI & Automation",
     content: (
-      <div>
-        <div className="main-list">
-          <span className="title">Project Title</span>
-          <span className="title">Budget</span>
-          <span className="title">Deadline</span>
-          <span className="title">Client</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">AI Customer Support Bot</span>
-          <span className="item">$300 to $700</span>
-          <span className="item">2026 Aug 12</span>
-          <span className="item">Duka Tech</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">Workflow Automation</span>
-          <span className="item">$500 to $1,200</span>
-          <span className="item">2026 Aug 10</span>
-          <span className="item">Sacco Online</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">AI Content Assistant</span>
-          <span className="item">$200 to $500</span>
-          <span className="item">2026 Aug 8</span>
-          <span className="item">Edu Centre</span>
-        </div>
-        <div className="list-item last-item">
-          <span className="item item-title">Data &amp; Reporting Dashboards</span>
-          <span className="item">$400 to $900</span>
-          <span className="item">2026 Aug 2</span>
-          <span className="item">AgriLink Kenya</span>
-        </div>
-      </div>
+      <p>
+        From customer support chatbots and workflow automation to AI content
+        assistants and data reporting dashboards, we build intelligent tools
+        that save you time, cut costs and keep your business running around the
+        clock.
+      </p>
     ),
   },
   {
     label: "Web & Design",
     content: (
-      <div>
-        <div className="main-list">
-          <span className="title">Project Title</span>
-          <span className="title">Budget</span>
-          <span className="title">Deadline</span>
-          <span className="title">Client</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">Business Website</span>
-          <span className="item">$150 to $400</span>
-          <span className="item">2026 Jul 28</span>
-          <span className="item">Local Retailer</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">E-Commerce Store</span>
-          <span className="item">$400 to $1,200</span>
-          <span className="item">2026 Jul 24</span>
-          <span className="item">Online Shop</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">WordPress Site</span>
-          <span className="item">$150 to $350</span>
-          <span className="item">2026 Jul 20</span>
-          <span className="item">Primary School</span>
-        </div>
-        <div className="list-item last-item">
-          <span className="item item-title">Brand Identity</span>
-          <span className="item">$50 to $200</span>
-          <span className="item">2026 Jul 16</span>
-          <span className="item">Startup</span>
-        </div>
-      </div>
+      <p>
+        Custom business websites, e-commerce stores, WordPress and Joomla
+        platforms, and complete brand identities designed to make your business
+        look professional and serve your customers online.
+      </p>
     ),
   },
   {
     label: "Community & Education",
     content: (
-      <div>
-        <div className="main-list">
-          <span className="title">Project Title</span>
-          <span className="title">Budget</span>
-          <span className="title">Duration</span>
-          <span className="title">Audience</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">Digital Literacy Workshop</span>
-          <span className="item">$200 to $600</span>
-          <span className="item">4 Weeks</span>
-          <span className="item">TVET Students</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">School Website Project</span>
-          <span className="item">$150 to $400</span>
-          <span className="item">3 Weeks</span>
-          <span className="item">High Schools</span>
-        </div>
-        <div className="list-item">
-          <span className="item item-title">Micro-Enterprise Digitization</span>
-          <span className="item">$100 to $500</span>
-          <span className="item">2 Weeks</span>
-          <span className="item">Local Traders</span>
-        </div>
-        <div className="list-item last-item">
-          <span className="item item-title">AI Skills Bootcamp</span>
-          <span className="item">$300 to $800</span>
-          <span className="item">6 Weeks</span>
-          <span className="item">Youth Groups</span>
-        </div>
-      </div>
+      <p>
+        Digital literacy workshops, school websites and AI skills bootcamps that
+        equip TVET students, youth groups and local traders with the tools of
+        the digital economy.
+      </p>
     ),
   },
 ];
