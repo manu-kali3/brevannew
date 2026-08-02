@@ -1,0 +1,84 @@
+/* Brevan Softwares custom overrides
+   Text-based logo so no external logo image is required
+------------------------------------------------------------- */
+
+.header-area .main-nav .logo {
+  font-size: 22px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.header-area .main-nav .logo span.accent {
+  color: #43ba7f;
+  font-weight: 800;
+}
+
+.background-header .main-nav .logo {
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .header-area .main-nav .logo {
+    font-size: 20px;
+  }
+}
+
+/* Anchor scroll offset for the fixed header */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* Hero: anchor the nav arrows inside the banner (outer wrapper
+   needs position:relative since Swiper core styles only the inner .swiper) */
+.swiper-container {
+  position: relative;
+}
+
+/* Swiper testimonial carousel (replaces Owl carousel) */
+.owl-testimonials {
+  padding-bottom: 30px;
+}
+
+.testimonials .swiper-pagination {
+  position: relative;
+  bottom: 0;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.testimonials .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #ffa88c;
+  border-radius: 50%;
+  margin: 0px 4px;
+  opacity: 1;
+}
+
+.testimonials .swiper-pagination-bullet-active {
+  background-color: #ff511a;
+}
+
+/* Form status messages */
+.form-status {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-status.success {
+  color: #43ba7f;
+}
+
+.form-status.error {
+  color: #ff511a;
+}
+
+#calculate .form-status {
+  color: #fff;
+}
+
+#calculate .form-status.success {
+  color: #7fe6ae;
+}

@@ -1,0 +1,63 @@
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const toEmail = process.env.CONTACT_EMAIL ?? "brevansoftwares@gmail.com";
+
+export const runtime = "nodejs";
+
+export async function POST(request: Request) {
+  if (!resend) {
+    return NextResponse.json(
+      { error: "Email service is not configured yet." },
+      { status: 503 }
+    );
+  }
+
+  let body: Record<string, string>;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+  }
+
+  const name = body.name?.trim() ?? "";
+  const email = body.email?.trim() ?? "";
+  const subject = body.subject?.trim() ?? "";
+  const service = body.service?.trim() ?? "";
+
+  if (!name || !email) {
+    return NextResponse.json(
+      { error: "Please provide your name and email address." },
+      { status: 400 }
+    );
+  }
+
+  const emailPattern = /^[^ @]+@[^ @]+$/;
+  if (!emailPattern.test(email)) {
+    return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
+  }
+
+  const { error } = await resend.emails.send({
+    from: "Brevan Softwares Website <onboarding@resend.dev>",
+    to: [toEmail],
+    replyTo: email,
+    subject: `Quote Request: ${subject || service || "New Quote Request"}`,
+    text: [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Subject: ${subject}`,
+      `Service Needed: ${service}`,
+    ].join("\n"),
+  });
+
+  if (error) {
+    console.error("Resend error:", error);
+    return NextResponse.json(
+      { error: "Could not send your request. Please try again." },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json({ ok: true });
+}
