@@ -15,6 +15,27 @@
   }
 }
 
+.header-area .main-nav .logo .logo-text {
+  margin-left: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.background-header .main-nav .logo {
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .header-area .main-nav .logo .logo-text {
+    font-size: 15px;
+    margin-left: 8px;
+  }
+}
+
 /* Anchor scroll offset for the fixed header */
 section[id] {
   scroll-margin-top: 90px;

@@ -4,7 +4,6 @@ import CtaSection from "@/components/CtaSection";
 import AboutSection from "@/components/AboutSection";
 import CalculatorSection from "@/components/CalculatorSection";
 import Testimonials from "@/components/Testimonials";
-import Partners from "@/components/Partners";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <AboutSection />
       <CalculatorSection />
       <Testimonials />
-      <Partners />
     </>
   );
 }
