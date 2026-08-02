@@ -1,26 +1,17 @@
 /* Brevan Softwares custom overrides
-   Text-based logo so no external logo image is required
 ------------------------------------------------------------- */
 
-.header-area .main-nav .logo {
-  font-size: 22px;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  white-space: nowrap;
-}
-
-.header-area .main-nav .logo span.accent {
-  color: #43ba7f;
-  font-weight: 800;
-}
-
-.background-header .main-nav .logo {
+/* Image logo in the header */
+.header-area .main-nav .logo img {
+  height: 42px;
   width: auto;
+  max-width: 160px;
+  vertical-align: middle;
 }
 
 @media (max-width: 767px) {
-  .header-area .main-nav .logo {
-    font-size: 20px;
+  .header-area .main-nav .logo img {
+    height: 34px;
   }
 }
 
@@ -81,4 +72,20 @@ section[id] {
 
 #calculate .form-status.success {
   color: #7fe6ae;
+}
+
+/* Privacy policy page */
+.privacy-page {
+  padding: 100px 0;
+}
+
+.privacy-content h4 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #212741;
+  font-weight: 700;
+}
+
+.privacy-content p {
+  margin-bottom: 15px;
 }

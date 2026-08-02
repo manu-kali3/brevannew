@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer>
@@ -13,6 +15,8 @@ export default function Footer() {
               </a>{" "}
               | Phone:{" "}
               <a href="tel:+254117004147">+254 117 004 147</a>
+              <br />
+              <Link href="/privacy-policy">Privacy Policy</Link>
             </p>
           </div>
         </div>

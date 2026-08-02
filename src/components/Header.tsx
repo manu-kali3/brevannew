@@ -45,7 +45,7 @@ export default function Header() {
           <div className="col-12">
             <nav className="main-nav">
               <Link href="/" className="logo" onClick={closeMenu}>
-                Brevan <span className="accent">Softwares</span>
+                <img src="/assets/images/logo.png" alt="Brevan Softwares" />
               </Link>
 
               <ul className="nav" style={{ display: menuOpen ? "block" : "none" }}>
