@@ -459,3 +459,284 @@ section.about-us ul.nacc li p {
 .privacy-content p {
   margin-bottom: 15px;
 }
+
+/* Professional footer
+------------------------------------------------------------- */
+.site-footer {
+  background-color: #181d30;
+  text-align: left;
+  padding: 0;
+}
+
+.footer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #43ba7f 0%, #43ba7f 45%, #ff511a 100%);
+}
+
+.footer-main {
+  padding: 70px 0 50px;
+}
+
+.footer-brand .footer-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.footer-brand .footer-logo img {
+  height: 44px;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.footer-logo-text {
+  margin-left: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-about {
+  margin: 20px 0 24px;
+  font-size: 14px;
+  line-height: 26px;
+  color: #9aa0b4 !important;
+  max-width: 340px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #c7cbd9;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+.footer-social:hover {
+  background-color: #43ba7f;
+  border-color: #43ba7f;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.footer-title {
+  margin: 4px 0 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links li a {
+  position: relative;
+  color: #9aa0b4;
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.3s ease 0s;
+}
+
+.footer-links li a:hover {
+  color: #43ba7f;
+}
+
+.footer-contact {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #9aa0b4;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.footer-contact li i {
+  margin-top: 3px;
+  color: #43ba7f;
+  font-size: 15px;
+  width: 16px;
+  text-align: center;
+}
+
+.footer-contact li a {
+  color: #9aa0b4;
+  text-decoration: none;
+  transition: color 0.3s ease 0s;
+  word-break: break-word;
+}
+
+.footer-contact li a:hover {
+  color: #43ba7f;
+}
+
+.footer-newsletter-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #c7cbd9;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.newsletter-form .newsletter-row {
+  display: flex;
+  max-width: 300px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s ease 0s;
+}
+
+.newsletter-form .newsletter-row:focus-within {
+  border-color: #43ba7f;
+}
+
+.newsletter-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.newsletter-form input::placeholder {
+  color: #7d849b;
+}
+
+.newsletter-form button {
+  padding: 0 18px;
+  background-color: #43ba7f;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+}
+
+.newsletter-form button:hover {
+  background-color: #36a16c;
+}
+
+.newsletter-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.newsletter-status {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.newsletter-status.success {
+  color: #43ba7f;
+}
+
+.newsletter-status.error {
+  color: #ff7254;
+}
+
+.footer-bottom {
+  background-color: #121724;
+  padding: 22px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #9aa0b4 !important;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 26px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-legal li a {
+  color: #9aa0b4;
+  font-size: 13px;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.3s ease 0s;
+}
+
+.footer-legal li a:hover {
+  color: #ff511a;
+}
+
+@media (max-width: 991px) {
+  .footer-main {
+    padding: 55px 0 35px;
+  }
+  .footer-col {
+    margin-bottom: 40px;
+  }
+  .footer-bottom {
+    text-align: center;
+  }
+  .footer-legal {
+    justify-content: center;
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 575px) {
+  .footer-main {
+    padding: 45px 0 25px;
+  }
+  .footer-col {
+    margin-bottom: 34px;
+  }
+  .footer-brand .footer-logo img {
+    height: 38px;
+  }
+  .footer-logo-text {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  .newsletter-form .newsletter-row {
+    max-width: 100%;
+  }
+}
