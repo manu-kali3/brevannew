@@ -30,3 +30,32 @@ export async function storeLead(input: LeadInput): Promise<boolean> {
   }
   return true;
 }
+
+export interface EmailRecord {
+  type: string;
+  from: string;
+  to: string;
+  subject: string;
+  body: string;
+  delivered: boolean;
+}
+
+export async function storeEmail(input: EmailRecord): Promise<boolean> {
+  if (!supabase) return false;
+
+  const { error } = await supabase.from("emails").insert([
+    {
+      type: input.type,
+      from_address: input.from,
+      to_address: input.to,
+      subject: input.subject,
+      body: input.body,
+      delivered: input.delivered,
+    },
+  ]);
+  if (error) {
+    console.error("Supabase email log error:", error.message);
+    return false;
+  }
+  return true;
+}

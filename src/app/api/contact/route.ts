@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { storeLead } from "@/lib/supabase";
-
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const toEmail = process.env.CONTACT_EMAIL ?? "brevansoftwares@gmail.com";
+import { sendEmail, ownerNotification, autoresponse } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -35,34 +32,16 @@ export async function POST(request: Request) {
 
   let anyDelivered = false;
 
-  const stored = await storeLead({
-    type: "contact",
-    name,
-    email,
-    phone,
-    subject,
-    message,
-  });
+  const stored = await storeLead({ type: "contact", name, email, phone, subject, message });
   if (stored) anyDelivered = true;
 
-  if (resend) {
-    const { error } = await resend.emails.send({
-      from: "Brevan Softwares Website <onboarding@resend.dev>",
-      to: [toEmail],
-      replyTo: email,
-      subject: `New Message: ${subject || "Contact Form"}`,
-      text: [
-        `Name: ${name}`,
-        `Phone: ${phone}`,
-        `Email: ${email}`,
-        `Subject: ${subject}`,
-        "",
-        message,
-      ].join("\n"),
-    });
-    if (!error) anyDelivered = true;
-    else console.error("Resend error:", error);
-  }
+  const notified = await sendEmail(
+    ownerNotification("contact", { name, email, phone, subject }, message)
+  );
+  if (notified) anyDelivered = true;
+
+  const auto = await sendEmail(autoresponse("contact", name, email));
+  if (auto) anyDelivered = true;
 
   if (!anyDelivered) {
     return NextResponse.json(
