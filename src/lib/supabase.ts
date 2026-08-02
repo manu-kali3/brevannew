@@ -59,3 +59,30 @@ export async function storeEmail(input: EmailRecord): Promise<boolean> {
   }
   return true;
 }
+
+export interface Event {
+  id: string;
+  title: string;
+  description: string | null;
+  event_date: string;
+  event_time: string | null;
+  venue: string | null;
+  image_url: string | null;
+  created_at: string;
+}
+
+export async function listEvents(): Promise<Event[]> {
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("events")
+    .select("id,title,description,event_date,event_time,venue,image_url,created_at")
+    .order("event_date", { ascending: true });
+
+  if (error) {
+    console.error("Supabase events query error:", error.message);
+    return [];
+  }
+
+  return (data ?? []) as Event[];
+}
