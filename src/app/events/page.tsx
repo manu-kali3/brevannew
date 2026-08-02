@@ -3,6 +3,8 @@ import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import { listEvents } from "@/lib/supabase";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Events",
   description:
