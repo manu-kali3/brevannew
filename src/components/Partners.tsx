@@ -1,6 +1,12 @@
+"use client";
+
+import { useSiteImages } from "@/components/SiteImagesProvider";
+
 const LOGOS = Array.from({ length: 6 }, (_, i) => i + 1);
 
 export default function Partners() {
+  const images = useSiteImages();
+
   return (
     <section className="partners">
       <div className="container">
@@ -8,7 +14,7 @@ export default function Partners() {
           {LOGOS.map((n) => (
             <div className="col-lg-2 col-sm-4 col-6" key={n}>
               <div className="item">
-                <img src="/assets/images/client-01.png" alt="Partner" />
+                <img src={images.partner_logo} alt="Partner" />
               </div>
             </div>
           ))}

@@ -234,7 +234,7 @@ header
 }
 
 .header-area {
-  background-image: url(../images/header-bg.png);
+  background-image: url(var(--img-bg_header, ../images/header-bg.png));
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -839,7 +839,7 @@ cta
 */
 
 section.simple-cta {
-  background-image: url(../images/cta-bg.jpg);
+  background-image: url(var(--img-bg_cta, ../images/cta-bg.jpg));
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1011,7 +1011,7 @@ calculator
 
 section.calculator {
   margin-top: 150px;
-  background-image: url(../images/calculator-bg.jpg);
+  background-image: url(var(--img-bg_calculator, ../images/calculator-bg.jpg));
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1213,7 +1213,7 @@ page heading
 */
 
 .page-heading {
-  background-image: url(../images/heading-bg.jpg);
+  background-image: url(var(--img-bg_heading, ../images/heading-bg.jpg));
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

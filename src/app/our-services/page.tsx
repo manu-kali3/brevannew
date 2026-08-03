@@ -2,122 +2,109 @@ import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import Tabs from "@/components/Tabs";
+import { listSiteImages, type ImageKey } from "@/lib/site-settings";
+
+type MissionImageKey = "service_details_1" | "service_details_2" | "service_details_3";
 
 export const metadata: Metadata = {
   title: "Our Services",
 };
 
-const missionTabs = [
+export const dynamic = "force-dynamic";
+
+const missionTabs: { label: string; imageKey: MissionImageKey }[] = [
   {
     label: "AI & Tech Integration",
-    content: (
-      <div>
-        <div className="left-image">
-          <img src="/assets/images/service-details-01.jpg" alt="AI and tech integration" />
-        </div>
-        <div className="right-content">
-          <h4>Practical AI automation for schools and enterprises</h4>
-          <p>
-            We bring practical AI automation solutions and future-ready skills
-            to schools and local enterprises, helping them work smarter with
-            technology.
-          </p>
-          <span>- AI chatbots for customer support</span>
-          <span>- Business process automation</span>
-          <span className="last-span">- AI tools and skills for your team</span>
-        </div>
-      </div>
-    ),
+    imageKey: "service_details_1",
   },
   {
     label: "Community Digitalization",
-    content: (
-      <div>
-        <div className="left-image">
-          <img src="/assets/images/service-details-02.jpg" alt="Community digitalization" />
-        </div>
-        <div className="right-content">
-          <h4>Digital tools for micro-enterprises</h4>
-          <p>
-            We promote digital tools for micro-enterprises and bridge the
-            technology gap between rural and urban sectors so every business can
-            compete.
-          </p>
-          <span>- Websites for local businesses</span>
-          <span>- Online stores and payments</span>
-          <span className="last-span">- Real estate listing platforms</span>
-        </div>
-      </div>
-    ),
+    imageKey: "service_details_2",
   },
   {
     label: "Education & Innovation",
-    content: (
-      <div>
-        <div className="left-image">
-          <img src="/assets/images/service-details-03.jpg" alt="Education and innovation" />
-        </div>
-        <div className="right-content">
-          <h4>Equipping learners and TVET students</h4>
-          <p>
-            We equip learners and TVET students with technical proficiencies
-            through practical training in web design, programming and AI.
-          </p>
-          <span>- Digital skills workshops</span>
-          <span>- School and college projects</span>
-          <span className="last-span">- AI skills bootcamps for youth</span>
-        </div>
-      </div>
-    ),
+    imageKey: "service_details_3",
   },
 ];
 
-const services = [
+const missionContent: Record<MissionImageKey, { heading: string; body: string; points: string[] }> = {
+  service_details_1: {
+    heading: "Practical AI automation for schools and enterprises",
+    body: "We bring practical AI automation solutions and future-ready skills to schools and local enterprises, helping them work smarter with technology.",
+    points: [
+      "AI chatbots for customer support",
+      "Business process automation",
+      "AI tools and skills for your team",
+    ],
+  },
+  service_details_2: {
+    heading: "Digital tools for micro-enterprises",
+    body: "We promote digital tools for micro-enterprises and bridge the technology gap between rural and urban sectors so every business can compete.",
+    points: [
+      "Websites for local businesses",
+      "Online stores and payments",
+      "Real estate listing platforms",
+    ],
+  },
+  service_details_3: {
+    heading: "Equipping learners and TVET students",
+    body: "We equip learners and TVET students with technical proficiencies through practical training in web design, programming and AI.",
+    points: [
+      "Digital skills workshops",
+      "School and college projects",
+      "AI skills bootcamps for youth",
+    ],
+  },
+};
+
+const services: { icon: string; title: string; text: string; imageKey: ImageKey; side: string }[] = [
   {
     icon: "fas fa-laptop-code",
     title: "Website Design",
     text: "We design and develop custom, modern websites that look great and work perfectly on mobile, tablet and desktop. From simple business sites to content-rich platforms, we build websites that help your business grow and reach more customers online.",
-    image: "service-image-01.jpg",
+    imageKey: "service_1",
     side: "right",
   },
   {
     icon: "fab fa-wordpress",
     title: "WordPress & Joomla",
     text: "We build professional websites on WordPress and Joomla so you can easily manage your own content. We handle themes, plugins, setup, security and maintenance, giving you a powerful and flexible website without the technical stress.",
-    image: "service-image-02.jpg",
+    imageKey: "service_2",
     side: "left",
   },
   {
     icon: "fas fa-shopping-cart",
     title: "E-Commerce Solutions",
     text: "Launch a secure online store with easy product management, mobile money and card payments, and order tracking. We help Kenyan businesses sell their products online to customers everywhere.",
-    image: "service-image-03.jpg",
+    imageKey: "service_3",
     side: "right",
   },
   {
     icon: "fas fa-building",
     title: "Real Estate Platforms",
     text: "We build property listing websites and platforms for real estate agents, landlords and developers. Showcase properties, manage listings and connect with serious buyers and tenants online.",
-    image: "service-image-01.jpg",
+    imageKey: "service_1",
     side: "left",
   },
   {
     icon: "fas fa-palette",
     title: "Graphic Design & Branding",
     text: "Logos, brand identities, posters, flyers, banners and marketing materials that make your business look professional and memorable. A strong brand builds trust and sets you apart from competitors.",
-    image: "service-image-02.jpg",
+    imageKey: "service_2",
     side: "right",
   },
   {
     icon: "fas fa-robot",
     title: "AI Automation",
     text: "Bring artificial intelligence into your daily operations with chatbots, automated workflows, smart content and data dashboards. We help schools and local enterprises save time, cut costs and stay ahead of the digital curve.",
-    image: "service-image-03.jpg",
+    imageKey: "service_3",
     side: "left",
   },
 ];
 
-export default function OurServicesPage() {
+export default async function OurServicesPage() {
+  const images = await listSiteImages();
+
   return (
     <>
       <PageHeading title="Our Services" />
@@ -132,7 +119,7 @@ export default function OurServicesPage() {
                       <>
                         <div className="col-lg-6">
                           <div className="left-image">
-                            <img src={`/assets/images/${service.image}`} alt={service.title} />
+                            <img src={images[service.imageKey]} alt={service.title} />
                           </div>
                         </div>
                         <div className="col-lg-6 align-self-center">
@@ -154,7 +141,7 @@ export default function OurServicesPage() {
                         </div>
                         <div className="col-lg-6">
                           <div className="right-image">
-                            <img src={`/assets/images/${service.image}`} alt={service.title} />
+                            <img src={images[service.imageKey]} alt={service.title} />
                           </div>
                         </div>
                       </>
@@ -177,7 +164,30 @@ export default function OurServicesPage() {
               </div>
             </div>
             <div className="col-lg-10 offset-lg-1">
-              <Tabs items={missionTabs} />
+              <Tabs
+                items={missionTabs.map((tab) => ({
+                  label: tab.label,
+                  content: (
+                    <div>
+                      <div className="left-image">
+                        <img src={images[tab.imageKey]} alt={tab.label} />
+                      </div>
+                      <div className="right-content">
+                        <h4>{missionContent[tab.imageKey].heading}</h4>
+                        <p>{missionContent[tab.imageKey].body}</p>
+                        {missionContent[tab.imageKey].points.map((point, idx) => (
+                          <span
+                            key={point}
+                            className={idx === missionContent[tab.imageKey].points.length - 1 ? "last-span" : ""}
+                          >
+                            - {point}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ),
+                }))}
+              />
             </div>
           </div>
         </div>

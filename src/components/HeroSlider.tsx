@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Mousewheel, Keyboard } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
+import { useSiteImages } from "@/components/SiteImagesProvider";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -13,30 +14,32 @@ interface Slide {
   text: string;
 }
 
-const slides: Slide[] = [
-  {
-    background: "/assets/images/slide-01.jpg",
-    title:
-      "Build <em>smart</em> websites for your business<br/>&amp; automate <em>every process</em>",
-    text: "Brevan Softwares is a Kenyan technology initiative delivering AI automation, website design and digital tools that help local businesses, schools and communities grow.",
-  },
-  {
-    background: "/assets/images/slide-02.jpg",
-    title:
-      "<em>AI Automation</em> &amp; future-ready skills<br/>for schools &amp; <em>local enterprises</em>",
-    text: "We bring practical AI solutions and modern technical skills to TVET students and micro-enterprises, equipping our communities with the tools of tomorrow.",
-  },
-  {
-    background: "/assets/images/slide-03.jpg",
-    title:
-      "Bridging the <em>digital divide</em> between<br/>rural &amp; urban <em>Kenya</em>",
-    text: "From digitalizing micro-enterprises to driving digital transformation in rural and educational communities, we are committed to inclusive growth.",
-  },
-];
-
 const INTERLEAVE_OFFSET = 0.5;
 
 export default function HeroSlider() {
+  const images = useSiteImages();
+
+  const slides: Slide[] = [
+    {
+      background: images.hero_1,
+      title:
+        "Build <em>smart</em> websites for your business<br/>&amp; automate <em>every process</em>",
+      text: "Brevan Softwares is a Kenyan technology initiative delivering AI automation, website design and digital tools that help local businesses, schools and communities grow.",
+    },
+    {
+      background: images.hero_2,
+      title:
+        "<em>AI Automation</em> &amp; future-ready skills<br/>for schools &amp; <em>local enterprises</em>",
+      text: "We bring practical AI solutions and modern technical skills to TVET students and micro-enterprises, equipping our communities with the tools of tomorrow.",
+    },
+    {
+      background: images.hero_3,
+      title:
+        "Bridging the <em>digital divide</em> between<br/>rural &amp; urban <em>Kenya</em>",
+      text: "From digitalizing micro-enterprises to driving digital transformation in rural and educational communities, we are committed to inclusive growth.",
+    },
+  ];
+
   return (
     <div className="swiper-container" id="top">
       <Swiper

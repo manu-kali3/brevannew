@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SiteImagesProvider from "@/components/SiteImagesProvider";
+import { listSiteImages } from "@/lib/site-settings";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevannew.vercel.app";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,7 +53,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const images = await listSiteImages();
+
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
@@ -91,9 +97,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <SiteImagesProvider images={images}>
+          <Header />
+          {children}
+          <Footer images={images} />
+        </SiteImagesProvider>
       </body>
     </html>
   );

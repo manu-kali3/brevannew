@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NewsletterForm from "@/components/NewsletterForm";
+import type { SiteImages } from "@/lib/site-settings";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -27,7 +28,7 @@ const socials = [
   { label: "WhatsApp", icon: "fab fa-whatsapp" },
 ];
 
-export default function Footer() {
+export default function Footer({ images }: { images: SiteImages }) {
   return (
     <footer className="site-footer">
       <div className="footer-accent" aria-hidden="true" />
@@ -39,7 +40,7 @@ export default function Footer() {
               <div className="footer-brand">
                 <Link href="/" className="footer-logo">
                   <img
-                    src="/assets/images/brevan-logo.jpg"
+                    src={images.logo}
                     alt="Brevan Softwares"
                   />
                   <span className="footer-logo-text">Brevan Softwares</span>

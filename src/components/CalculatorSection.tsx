@@ -1,13 +1,18 @@
+"use client";
+
 import QuoteForm from "@/components/QuoteForm";
+import { useSiteImages } from "@/components/SiteImagesProvider";
 
 export default function CalculatorSection() {
+  const images = useSiteImages();
+
   return (
     <section className="calculator">
       <div className="container">
         <div className="row">
           <div className="col-lg-7">
             <div className="left-image">
-              <img src="/assets/images/calculator-image.png" alt="Brevan Softwares solutions" />
+              <img src={images.calculator_image} alt="Brevan Softwares solutions" />
             </div>
           </div>
           <div className="col-lg-5">

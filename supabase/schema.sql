@@ -112,3 +112,51 @@ create index if not exists idx_emails_created_at
 
 create index if not exists idx_emails_type
   on public.emails (type);
+
+-- Site settings (admin-editable images and content shown across the site).
+create table if not exists public.site_settings (
+  key text primary key,
+  value text not null,
+  updated_at timestamptz not null default now()
+);
+
+alter table public.site_settings enable row level security;
+
+-- Public site can read settings with the anon key if needed.
+drop policy if exists "site settings are publicly readable" on public.site_settings;
+create policy "site settings are publicly readable"
+  on public.site_settings
+  for select
+  to anon
+  using (true);
+
+-- Admin app writes settings using the service role (bypasses RLS).
+drop policy if exists "site settings are manageable by service role" on public.site_settings;
+create policy "site settings are manageable by service role"
+  on public.site_settings
+  for all
+  to service_role
+  using (true)
+  with check (true);
+
+-- Seed default values (first run only; edits are preserved on re-run).
+insert into public.site_settings (key, value) values
+  ('logo', '/assets/images/brevan-logo.jpg'),
+  ('hero_1', '/assets/images/slide-01.jpg'),
+  ('hero_2', '/assets/images/slide-02.jpg'),
+  ('hero_3', '/assets/images/slide-03.jpg'),
+  ('service_1', '/assets/images/service-image-01.jpg'),
+  ('service_2', '/assets/images/service-image-02.jpg'),
+  ('service_3', '/assets/images/service-image-03.jpg'),
+  ('service_details_1', '/assets/images/service-details-01.jpg'),
+  ('service_details_2', '/assets/images/service-details-02.jpg'),
+  ('service_details_3', '/assets/images/service-details-03.jpg'),
+  ('about_image', '/assets/images/about-left-image.jpg'),
+  ('calculator_image', '/assets/images/calculator-image.png'),
+  ('testimonial_avatar', '/assets/images/testimonials-01.jpg'),
+  ('partner_logo', '/assets/images/client-01.png'),
+  ('bg_header', '/assets/images/header-bg.png'),
+  ('bg_cta', '/assets/images/cta-bg.jpg'),
+  ('bg_calculator', '/assets/images/calculator-bg.jpg'),
+  ('bg_heading', '/assets/images/heading-bg.jpg')
+on conflict (key) do nothing;

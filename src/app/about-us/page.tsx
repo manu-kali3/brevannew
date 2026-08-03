@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import Accordions from "@/components/Accordions";
 import CtaSection from "@/components/CtaSection";
+import { listSiteImages } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
   title: "About Us",
 };
+
+export const dynamic = "force-dynamic";
 
 const accordionItems = [
   {
@@ -59,7 +62,9 @@ const accordionItems = [
   },
 ];
 
-export default function AboutUsPage() {
+export default async function AboutUsPage() {
+  const images = await listSiteImages();
+
   return (
     <>
       <PageHeading title="About Us" />
@@ -68,7 +73,7 @@ export default function AboutUsPage() {
           <div className="row">
             <div className="col-lg-6">
               <div className="left-image">
-                <img src="/assets/images/about-left-image.jpg" alt="About Brevan Softwares" />
+                <img src={images.about_image} alt="About Brevan Softwares" />
               </div>
             </div>
             <div className="col-lg-6 align-self-center">

@@ -2,6 +2,7 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import { useSiteImages } from "@/components/SiteImagesProvider";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -33,6 +34,8 @@ const testimonials: Testimonial[] = [
 ];
 
 export default function Testimonials() {
+  const images = useSiteImages();
+
   return (
     <section className="testimonials" id="testimonials">
       <div className="container">
@@ -62,7 +65,7 @@ export default function Testimonials() {
                     <h4>{t.name}</h4>
                     <span>{t.role}</span>
                     <div className="right-image">
-                      <img src="/assets/images/testimonials-01.jpg" alt={t.name} />
+                      <img src={images.testimonial_avatar} alt={t.name} />
                     </div>
                   </div>
                 </SwiperSlide>

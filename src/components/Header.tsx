@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSiteImages } from "@/components/SiteImagesProvider";
 
 export default function Header() {
   const pathname = usePathname();
+  const images = useSiteImages();
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +47,7 @@ export default function Header() {
           <div className="col-12">
             <nav className="main-nav">
               <Link href="/" className="logo" onClick={closeMenu}>
-                <img src="/assets/images/brevan-logo.jpg" alt="Brevan Softwares" />
+                <img src={images.logo} alt="Brevan Softwares" />
                 <span className="logo-text">Brevan Softwares</span>
               </Link>
 
