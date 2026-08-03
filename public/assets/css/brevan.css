@@ -50,24 +50,18 @@ section[id] {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 
-/* Mobile header: white background, visible menu button, polished dropdown */
+/* Mobile header: keep the transparent/dark look like desktop, with a
+   polished dropdown. The hero and page headings are dark, so the white
+   logo text and menu button stay clearly visible. */
 @media (max-width: 767px) {
   .header-area {
-    background-color: #ffffff;
+    background-color: transparent;
     background-image: none;
-    border-bottom: 1px solid rgba(33, 39, 65, 0.1);
-    box-shadow: 0 4px 18px rgba(33, 39, 65, 0.08);
   }
 
-  /* Hamburger bars visible on the light header */
-  .header-area .main-nav .menu-trigger span,
-  .header-area .main-nav .menu-trigger span:before,
-  .header-area .main-nav .menu-trigger span:after {
-    background-color: #212741;
-  }
-  .header-area .main-nav .menu-trigger.active span:before,
-  .header-area .main-nav .menu-trigger.active span:after {
-    background-color: #212741;
+  .header-area .main-nav .logo,
+  .header-area .main-nav .logo .logo-text {
+    color: #ffffff;
   }
 
   /* Dropdown panel scrolls instead of overflowing */
@@ -107,9 +101,9 @@ section[id] {
     color: #ffffff !important;
   }
 
-  /* Sub-menu chevron visible on the light header */
+  /* Sub-menu chevron visible over the dark header */
   .header-area .main-nav .nav li.has-sub:after {
-    color: #212741;
+    color: #ffffff;
   }
 }
 
