@@ -90,3 +90,25 @@ create policy "projects are manageable by service role"
   to service_role
   using (true)
   with check (true);
+
+-- Performance indexes for the common read/write paths.
+-- Events are listed ordered by date on both the public site and the admin app.
+create index if not exists idx_events_event_date
+  on public.events (event_date);
+
+-- Projects are listed ordered by most recently added.
+create index if not exists idx_projects_created_at
+  on public.projects (created_at desc);
+
+-- Leads and emails are growing write logs; index their common sort/filter columns.
+create index if not exists idx_leads_created_at
+  on public.leads (created_at desc);
+
+create index if not exists idx_leads_email
+  on public.leads (email);
+
+create index if not exists idx_emails_created_at
+  on public.emails (created_at desc);
+
+create index if not exists idx_emails_type
+  on public.emails (type);
