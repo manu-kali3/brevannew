@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { storeEmail } from "@/lib/supabase";
+import { storeEmail, addSubscriber } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
@@ -30,7 +30,10 @@ export async function POST(request: Request) {
     delivered: true,
   });
 
-  if (!logged) {
+  // Keep the Brevan Events subscriber list in sync for admin bulk email.
+  const subscribed = await addSubscriber({ email, source: "newsletter" });
+
+  if (!logged && !subscribed) {
     return NextResponse.json(
       { error: "Subscriptions are not configured yet. Please try again later." },
       { status: 503 }

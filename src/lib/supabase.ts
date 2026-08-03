@@ -60,6 +60,30 @@ export async function storeEmail(input: EmailRecord): Promise<boolean> {
   return true;
 }
 
+/** Adds (or re-subscribes) an email to the events portal subscriber list. */
+export async function addSubscriber(input: {
+  email: string;
+  name?: string;
+  source?: "signup" | "booking" | "newsletter" | "admin";
+}): Promise<boolean> {
+  if (!supabase) return false;
+
+  const { error } = await supabase.from("subscribers").upsert(
+    {
+      email: input.email.trim().toLowerCase(),
+      name: input.name?.trim() || null,
+      source: input.source ?? "newsletter",
+      unsubscribed_at: null,
+    },
+    { onConflict: "email" }
+  );
+  if (error) {
+    console.error("Supabase subscriber upsert error:", error.message);
+    return false;
+  }
+  return true;
+}
+
 export interface Event {
   id: string;
   title: string;
