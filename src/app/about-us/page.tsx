@@ -67,7 +67,12 @@ export default async function AboutUsPage() {
 
   return (
     <>
-      <PageHeading title="About Us" />
+      <PageHeading
+        title="About Us"
+        kicker="Who We Are"
+        subtitle="A Kenyan technology initiative on a mission to upscale artificial intelligence, digitize local businesses and drive digital transformation across communities."
+        image={images.hero_about}
+      />
       <section className="top-section">
         <div className="container">
           <div className="row">

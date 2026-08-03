@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import { listEvents } from "@/lib/supabase";
+import { listSiteImages } from "@/lib/site-settings";
 
 export const dynamic = "force-dynamic";
 
@@ -22,10 +23,16 @@ function formatDate(date: string) {
 
 export default async function EventsPage() {
   const events = await listEvents();
+  const images = await listSiteImages();
 
   return (
     <>
-      <PageHeading title="Events" />
+      <PageHeading
+        title="Events &amp; Workshops"
+        kicker="What's Happening"
+        subtitle="Workshops, trainings and community meetups where we teach practical digital skills, AI automation and modern web technologies."
+        image={images.hero_events}
+      />
       <section className="events-section">
         <div className="container">
           <div className="row">

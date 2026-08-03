@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import ContactForm from "@/components/ContactForm";
+import { listSiteImages } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -27,10 +28,17 @@ const infoItems = [
   },
 ];
 
-export default function ContactUsPage() {
+export default async function ContactUsPage() {
+  const images = await listSiteImages();
+
   return (
     <>
-      <PageHeading title="Contact Us" />
+      <PageHeading
+        title="Contact Us"
+        kicker="Get In Touch"
+        subtitle="Tell us about your project — websites, stores, platforms, design or AI automation. We will get back to you with a plan and a quote."
+        image={images.hero_contact}
+      />
       <section className="map">
         <div className="container">
           <div className="row">

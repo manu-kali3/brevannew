@@ -107,7 +107,12 @@ export default async function OurServicesPage() {
 
   return (
     <>
-      <PageHeading title="Our Services" />
+      <PageHeading
+        title="Our Services"
+        kicker="What We Do"
+        subtitle="Web design, WordPress and Joomla, e-commerce, real estate platforms, graphic design and AI automation — all crafted to help your business grow."
+        image={images.hero_services}
+      />
       <section className="main-services">
         <div className="container">
           <div className="row">

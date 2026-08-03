@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
+import { listSiteImages } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
 };
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const images = await listSiteImages();
+
   return (
     <>
-      <PageHeading title="Privacy Policy" />
+      <PageHeading
+        title="Privacy Policy"
+        kicker="Legal"
+        subtitle="How Brevan Softwares collects, uses and protects your personal information."
+        image={images.hero_privacy}
+      />
       <section className="privacy-page">
         <div className="container">
           <div className="row">

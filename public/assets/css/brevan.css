@@ -41,6 +41,126 @@ section[id] {
   scroll-margin-top: 90px;
 }
 
+/* Professional subpage hero
+------------------------------------------------------------- */
+.page-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  min-height: 430px;
+  padding: 190px 0 110px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 23, 36, 0.72) 0%,
+    rgba(33, 39, 65, 0.5) 55%,
+    rgba(18, 23, 36, 0.88) 100%
+  );
+  z-index: 1;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.page-hero-kicker {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 6px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(67, 186, 127, 0.45);
+  background: rgba(67, 186, 127, 0.12);
+  color: #6ee2a8;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.page-hero-content h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.15;
+  text-transform: capitalize;
+}
+
+.page-hero-line {
+  width: 90px;
+  height: 5px;
+  margin: 20px auto;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #43ba7f 0%, #ff511a 100%);
+}
+
+.page-hero-subtitle {
+  max-width: 640px;
+  margin: 0 auto 22px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+}
+
+.page-hero-breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.page-hero-breadcrumb a {
+  color: #43ba7f;
+  text-decoration: none;
+  transition: color 0.3s ease 0s;
+}
+
+.page-hero-breadcrumb a:hover {
+  color: #ff511a;
+}
+
+.page-hero-crumb-sep {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.page-hero-current {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 767px) {
+  .page-hero {
+    min-height: 360px;
+    padding: 150px 0 90px;
+  }
+  .page-hero-content h1 {
+    font-size: 34px;
+  }
+  .page-hero-kicker {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  .page-hero-subtitle {
+    font-size: 15px;
+    line-height: 25px;
+  }
+}
+
 /* Header: readable nav on all screens
 ------------------------------------------------------------- */
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import { listProjects } from "@/lib/supabase";
+import { listSiteImages } from "@/lib/site-settings";
 
 export const dynamic = "force-dynamic";
 
@@ -13,10 +14,16 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
   const projects = await listProjects();
+  const images = await listSiteImages();
 
   return (
     <>
-      <PageHeading title="Projects" />
+      <PageHeading
+        title="Our Projects"
+        kicker="Portfolio"
+        subtitle="Websites, e-commerce stores, real estate platforms and AI tools we have built for businesses, schools and communities across Kenya."
+        image={images.hero_projects}
+      />
       <section className="projects-section">
         <div className="container">
           <div className="row">
