@@ -41,6 +41,78 @@ section[id] {
   scroll-margin-top: 90px;
 }
 
+/* Header: readable nav on all screens
+------------------------------------------------------------- */
+
+/* Slight shadow on the transparent (top of page) header so white links
+   stay readable over any hero image */
+.header-area.header-sticky:not(.background-header) .main-nav .nav li a {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+/* Mobile header: white background, visible menu button, polished dropdown */
+@media (max-width: 767px) {
+  .header-area {
+    background-color: #ffffff;
+    background-image: none;
+    border-bottom: 1px solid rgba(33, 39, 65, 0.1);
+    box-shadow: 0 4px 18px rgba(33, 39, 65, 0.08);
+  }
+
+  /* Hamburger bars visible on the light header */
+  .header-area .main-nav .menu-trigger span,
+  .header-area .main-nav .menu-trigger span:before,
+  .header-area .main-nav .menu-trigger span:after {
+    background-color: #212741;
+  }
+  .header-area .main-nav .menu-trigger.active span:before,
+  .header-area .main-nav .menu-trigger.active span:after {
+    background-color: #212741;
+  }
+
+  /* Dropdown panel scrolls instead of overflowing */
+  .header-area .main-nav .nav {
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    box-shadow: 0 18px 30px rgba(33, 39, 65, 0.12);
+  }
+
+  .header-area .main-nav .nav li {
+    background: #ffffff;
+  }
+  .header-area .main-nav .nav li a {
+    color: #212741 !important;
+    font-weight: 500;
+  }
+  .header-area .main-nav .nav li a:hover,
+  .header-area .main-nav .nav li a.active {
+    color: #ff511a !important;
+    background: #f5f6fa !important;
+  }
+
+  /* "Contact Support" keeps its green button look */
+  .header-area .main-nav .nav li:last-child a {
+    background-color: #43ba7f !important;
+    color: #ffffff !important;
+    display: inline-block;
+    width: auto;
+    height: 44px !important;
+    line-height: 44px !important;
+    margin: 10px 15px;
+    padding: 0 24px !important;
+    border-radius: 5px;
+  }
+  .header-area .main-nav .nav li:last-child a:hover {
+    background-color: #36a16c !important;
+    color: #ffffff !important;
+  }
+
+  /* Sub-menu chevron visible on the light header */
+  .header-area .main-nav .nav li.has-sub:after {
+    color: #212741;
+  }
+}
+
 /* Hero: anchor the nav arrows inside the banner (outer wrapper
    needs position:relative since Swiper core styles only the inner .swiper) */
 .swiper-container {
