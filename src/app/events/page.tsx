@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/events" },
 };
 
-const PORTAL_URL = "https://brevan-events.vercel.app";
+const PORTAL_URL = "https://events.brevansoftwares.co.ke";
 
 function formatDate(date: string) {
   return new Date(`${date}T00:00:00`).toLocaleDateString("en-GB", {
