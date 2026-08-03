@@ -92,6 +92,9 @@ export interface Event {
   event_time: string | null;
   venue: string | null;
   image_url: string | null;
+  is_online: boolean;
+  is_paid: boolean;
+  ticket_price_kes: number | null;
   created_at: string;
 }
 
@@ -100,7 +103,9 @@ export async function listEvents(): Promise<Event[]> {
 
   const { data, error } = await supabase
     .from("events")
-    .select("id,title,description,event_date,event_time,venue,image_url,created_at")
+    .select(
+      "id,title,description,event_date,event_time,venue,image_url,is_online,is_paid,ticket_price_kes,created_at"
+    )
     .order("event_date", { ascending: true });
 
   if (error) {

@@ -403,6 +403,96 @@ section.about-us ul.nacc li p {
   margin: 0;
 }
 
+/* Portal call-to-action banner */
+.portal-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #212741 0%, #2a3150 100%);
+  border-radius: 12px;
+  padding: 26px 30px;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.portal-cta h5 {
+  color: #fff;
+  font-size: 19px;
+  margin: 0 0 6px;
+}
+
+.portal-cta p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  max-width: 520px;
+}
+
+/* Event card price badge */
+.event-thumb {
+  position: relative;
+}
+
+.event-price-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #ff511a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.event-title-link {
+  color: #212741;
+  transition: color 0.3s ease 0s;
+}
+
+.event-title-link:hover {
+  color: #43ba7f;
+}
+
+.event-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #efefef;
+}
+
+.event-format {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7a7a7a;
+}
+
+.event-format i {
+  margin-right: 6px;
+  color: #43ba7f;
+}
+
+.event-book-btn {
+  display: inline-block;
+  background-color: #43ba7f;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease 0s;
+}
+
+.event-book-btn:hover {
+  opacity: 0.9;
+  color: #fff;
+}
+
 @media (max-width: 992px) {
   .events-grid {
     grid-template-columns: repeat(2, 1fr);

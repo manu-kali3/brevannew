@@ -9,8 +9,11 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "Upcoming events, workshops and trainings hosted by Brevan Softwares in Kenya. Digital skills, AI bootcamps and community tech meetups.",
+    "Upcoming events, workshops and trainings hosted by Brevan Softwares in Kenya. Digital skills, AI bootcamps and community tech meetups. Book tickets on the Brevan Events portal.",
+  alternates: { canonical: "/events" },
 };
+
+const PORTAL_URL = "https://brevan-events.vercel.app";
 
 function formatDate(date: string) {
   return new Date(`${date}T00:00:00`).toLocaleDateString("en-GB", {
@@ -19,6 +22,12 @@ function formatDate(date: string) {
     month: "long",
     year: "numeric",
   });
+}
+
+function formatPrice(event: { is_paid: boolean; ticket_price_kes: number | null }) {
+  if (!event.is_paid) return "Free";
+  const n = Number(event.ticket_price_kes ?? 0);
+  return `KES ${n.toLocaleString("en-KE", { maximumFractionDigits: 0 })}`;
 }
 
 export default async function EventsPage() {
@@ -35,6 +44,21 @@ export default async function EventsPage() {
       />
       <section className="events-section">
         <div className="container">
+          <div className="portal-cta">
+            <div>
+              <h5>Book tickets on the events portal</h5>
+              <p>
+                Create an account, reserve your seat and pay securely with M-Pesa,
+                then watch online events live.
+              </p>
+            </div>
+            <div className="green-button">
+              <a href={PORTAL_URL} target="_blank" rel="noopener noreferrer">
+                Open events portal
+              </a>
+            </div>
+          </div>
+
           <div className="row">
             <div className="col-lg-6 offset-lg-3">
               <div className="section-heading">
@@ -58,19 +82,29 @@ export default async function EventsPage() {
                 <article className="event-card" key={event.id}>
                   <div className="event-thumb">
                     {event.image_url ? (
-                      <img src={event.image_url} alt={event.title} />
+                      <img src={event.image_url} alt={event.title} loading="lazy" />
                     ) : (
                       <div className="event-thumb-fallback">
                         <i className="fas fa-calendar-alt"></i>
                       </div>
                     )}
+                    <span className="event-price-badge">{formatPrice(event)}</span>
                   </div>
                   <div className="event-body">
                     <div className="event-date">
                       <i className="fas fa-calendar-alt"></i> {formatDate(event.event_date)}
                       {event.event_time ? ` at ${event.event_time}` : ""}
                     </div>
-                    <h4>{event.title}</h4>
+                    <h4>
+                      <a
+                        className="event-title-link"
+                        href={`${PORTAL_URL}/events/${event.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {event.title}
+                      </a>
+                    </h4>
                     {event.venue && (
                       <p className="event-venue">
                         <i className="fas fa-map-marker-alt"></i> {event.venue}
@@ -79,6 +113,27 @@ export default async function EventsPage() {
                     {event.description && (
                       <p className="event-desc">{event.description}</p>
                     )}
+                    <div className="event-actions">
+                      <span className="event-format">
+                        {event.is_online ? (
+                          <>
+                            <i className="fas fa-video"></i> Online
+                          </>
+                        ) : (
+                          <>
+                            <i className="fas fa-map-marker-alt"></i> In person
+                          </>
+                        )}
+                      </span>
+                      <a
+                        className="green-button event-book-btn"
+                        href={`${PORTAL_URL}/events/${event.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Get tickets
+                      </a>
+                    </div>
                   </div>
                 </article>
               ))}
