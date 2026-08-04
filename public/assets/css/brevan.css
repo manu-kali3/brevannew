@@ -181,7 +181,11 @@ section[id] {
   }
   .header-area .main-nav .logo {
     float: none;
+    white-space: nowrap;
     line-height: 120px;
+  }
+  .header-area .main-nav .logo .logo-text {
+    white-space: nowrap;
   }
   .background-header .main-nav .logo {
     line-height: 80px;
@@ -191,6 +195,48 @@ section[id] {
     margin-top: 0 !important;
     display: flex;
     align-items: center;
+    /* Keep every item on ONE row. Bootstrap's .nav class sets
+       flex-wrap: wrap, which otherwise drops the last item below. */
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+  }
+  .header-area .main-nav .nav li a,
+  .header-area .main-nav .nav li > button.pages-btn {
+    white-space: nowrap;
+  }
+}
+
+/* Tighten item spacing at narrower widths so the last nav item
+   (the "Contact Support" button) stays on the same row, and scale the
+   logo down so its text never wraps to a second line */
+@media (min-width: 1201px) and (max-width: 1399px) {
+  .header-area .main-nav .logo {
+    font-size: 23px;
+    letter-spacing: 1px;
+  }
+  .header-area .main-nav .nav li {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .header-area .main-nav .nav li:last-child {
+    padding-right: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  .header-area .main-nav .logo {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  .header-area .main-nav .nav li {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .header-area .main-nav .nav li:last-child {
+    padding-right: 0;
+  }
+  .header-area .main-nav .nav li a,
+  .header-area .main-nav .nav li > button.pages-btn {
+    font-size: 13px;
   }
 }
 
