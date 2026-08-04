@@ -80,7 +80,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li className="has-sub">
-                  <a href="javascript:void(0)">Pages</a>
+                  <button type="button" className="pages-btn">Pages</button>
                   <ul className="sub-menu">
                     <li>
                       <Link href="/about-us" onClick={closeMenu}>

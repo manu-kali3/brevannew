@@ -170,6 +170,50 @@ section[id] {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 
+/* Desktop nav: flex the whole bar so the menu never wraps below the logo.
+   With the template's floated logo + floated nav, the menu drops out of the
+   header (into the hero, "middle of the page") below ~1415px viewport width. */
+@media (min-width: 768px) {
+  .header-area .main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-area .main-nav .logo {
+    float: none;
+    line-height: 120px;
+  }
+  .background-header .main-nav .logo {
+    line-height: 80px;
+  }
+  .header-area .main-nav .nav {
+    float: none;
+    margin-top: 0 !important;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* "Pages" dropdown trigger is a button (React blocks javascript: URLs) */
+.header-area .main-nav .nav li.has-sub > button.pages-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: capitalize;
+  color: #fff;
+  letter-spacing: 1px;
+  height: 40px;
+  line-height: 40px;
+}
+.header-area .main-nav .nav li.has-sub > button.pages-btn:hover {
+  color: #ff511a;
+}
+
+
 /* Mobile header: keep the transparent/dark look like desktop, with a
    polished dropdown. The hero and page headings are dark, so the white
    logo text and menu button stay clearly visible. */
@@ -224,6 +268,42 @@ section[id] {
   /* Sub-menu chevron visible over the dark header */
   .header-area .main-nav .nav li.has-sub:after {
     color: #ffffff;
+  }
+
+  /* "Pages" button matches the mobile link look */
+  .header-area .main-nav .nav li.has-sub > button.pages-btn {
+    color: #191a20 !important;
+    font-weight: 500;
+    height: 50px !important;
+    line-height: 50px !important;
+  }
+  .header-area .main-nav .nav li.has-sub > button.pages-btn:hover {
+    color: #ff511a !important;
+    background: #eee !important;
+  }
+
+  /* Sub-menu expands inline inside the mobile dropdown */
+  .header-area .main-nav .nav li.has-sub ul.sub-menu {
+    display: block;
+    position: static;
+    width: 100%;
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: #f7f7f7;
+    border-radius: 0;
+  }
+  .header-area .main-nav .nav li.has-sub ul.sub-menu li {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+  .header-area .main-nav .nav li.has-sub ul.sub-menu li a {
+    background: #f7f7f7;
+    color: #212741 !important;
+    font-weight: 500;
+    padding-left: 25px;
   }
 }
 
