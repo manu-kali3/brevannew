@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { unstable_cache } from "next/cache";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -98,7 +99,7 @@ export interface Event {
   created_at: string;
 }
 
-export async function listEvents(): Promise<Event[]> {
+async function loadEvents(): Promise<Event[]> {
   if (!supabase) return [];
 
   const { data, error } = await supabase
@@ -116,6 +117,12 @@ export async function listEvents(): Promise<Event[]> {
   return (data ?? []) as Event[];
 }
 
+/** Cached events list (ISR) so the site never blocks on a DB round trip. */
+export const listEvents = unstable_cache(loadEvents, ["site-events"], {
+  revalidate: 120,
+  tags: ["site-events"],
+});
+
 export interface Project {
   id: string;
   title: string;
@@ -126,7 +133,7 @@ export interface Project {
   created_at: string;
 }
 
-export async function listProjects(): Promise<Project[]> {
+async function loadProjects(): Promise<Project[]> {
   if (!supabase) return [];
 
   const { data, error } = await supabase
@@ -141,3 +148,9 @@ export async function listProjects(): Promise<Project[]> {
 
   return (data ?? []) as Project[];
 }
+
+/** Cached projects list (ISR) so the site never blocks on a DB round trip. */
+export const listProjects = unstable_cache(loadProjects, ["site-projects"], {
+  revalidate: 300,
+  tags: ["site-projects"],
+});

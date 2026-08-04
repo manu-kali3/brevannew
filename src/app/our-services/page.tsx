@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: "Our Services",
 };
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 const missionTabs: { label: string; imageKey: MissionImageKey }[] = [
   {

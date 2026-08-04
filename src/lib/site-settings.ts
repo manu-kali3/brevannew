@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { supabase } from "@/lib/supabase";
 
 export const IMAGE_KEYS = [
@@ -58,12 +59,7 @@ export const IMAGE_DEFAULTS: Record<ImageKey, string> = {
 
 export type SiteImages = Record<ImageKey, string>;
 
-/**
- * Loads the site images from the `site_settings` table, falling back to the
- * bundled defaults for any key that is missing or unreadable. Used server-side
- * so images render dynamically from the very first paint.
- */
-export async function listSiteImages(): Promise<SiteImages> {
+async function loadSiteImages(): Promise<SiteImages> {
   const images = { ...IMAGE_DEFAULTS };
 
   if (!supabase) return images;
@@ -85,3 +81,13 @@ export async function listSiteImages(): Promise<SiteImages> {
 
   return images;
 }
+
+/**
+ * Cached site images from the `site_settings` table (falls back to bundled
+ * defaults). Cached for 5 minutes so the static pages never wait on a DB
+ * round trip; refreshed automatically when the value expires.
+ */
+export const listSiteImages = unstable_cache(loadSiteImages, ["site-images"], {
+  revalidate: 300,
+  tags: ["site-images"],
+});

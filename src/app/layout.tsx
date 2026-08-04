@@ -8,7 +8,8 @@ import { listSiteImages } from "@/lib/site-settings";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevannew.vercel.app";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

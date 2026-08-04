@@ -4,7 +4,8 @@ import CtaSection from "@/components/CtaSection";
 import { listProjects } from "@/lib/supabase";
 import { listSiteImages } from "@/lib/site-settings";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Projects",
