@@ -13,12 +13,13 @@ export default function NewsletterForm() {
 
     const form = e.currentTarget;
     const email = (form.elements.namedItem("newsletter-email") as HTMLInputElement).value;
+    const website = (form.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "";
 
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, website }),
       });
       const json = await res.json();
       if (!res.ok) {
@@ -37,6 +38,7 @@ export default function NewsletterForm() {
 
   return (
     <form className="newsletter-form" onSubmit={handleSubmit} noValidate>
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", opacity: 0 }} />
       <div className="newsletter-row">
         <input
           type="email"

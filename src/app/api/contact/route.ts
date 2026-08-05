@@ -1,10 +1,22 @@
 import { NextResponse } from "next/server";
 import { storeLead } from "@/lib/supabase";
 import { sendEmail, ownerNotification, autoresponse } from "@/lib/email";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
+import { stripCRLF } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
+const MAX_FIELD = 5000;
+
 export async function POST(request: Request) {
+  const limiter = rateLimit(`contact:${clientIp(request)}`, 10, 10 * 60 * 1000);
+  if (!limiter.ok) {
+    return NextResponse.json(
+      { error: "Too many messages. Try again later." },
+      { status: 429, headers: { "Retry-After": String(limiter.retryAfter) } }
+    );
+  }
+
   let body: Record<string, string>;
   try {
     body = await request.json();
@@ -12,11 +24,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const name = body.name?.trim() ?? "";
-  const phone = body.phone?.trim() ?? "";
-  const email = body.email?.trim() ?? "";
-  const subject = body.subject?.trim() ?? "";
-  const message = body.message?.trim() ?? "";
+  // Honeypot: real users never fill this hidden field.
+  if (body.website && body.website.trim().length > 0) {
+    return NextResponse.json({ ok: true });
+  }
+
+  const name = stripCRLF(body.name ?? "");
+  const phone = stripCRLF(body.phone ?? "");
+  const email = stripCRLF(body.email ?? "");
+  const subject = stripCRLF(body.subject ?? "");
+  const message = (body.message ?? "").trim();
 
   if (!name || !email || !message) {
     return NextResponse.json(
@@ -24,9 +41,12 @@ export async function POST(request: Request) {
       { status: 400 }
     );
   }
+  if (name.length > 200 || subject.length > 300 || message.length > MAX_FIELD) {
+    return NextResponse.json({ error: "Please shorten your message." }, { status: 400 });
+  }
 
   const emailPattern = /^[^ @]+@[^ @]+$/;
-  if (!emailPattern.test(email)) {
+  if (!emailPattern.test(email) || email.length > 320) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 

@@ -25,7 +25,8 @@ export async function sendEmail(input: EmailInput): Promise<boolean> {
     const { error } = await resend.emails.send({
       from: FROM,
       to: [input.to],
-      subject: input.subject,
+      // Belt and braces: never pass raw line breaks into the subject.
+      subject: input.subject.replace(/[\r\n]+/g, " ").trim(),
       text: input.text,
     });
     if (!error) {

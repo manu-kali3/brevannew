@@ -3,6 +3,7 @@ import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import { listEvents } from "@/lib/supabase";
 import { listSiteImages } from "@/lib/site-settings";
+import { safeUrl } from "@/lib/validation";
 
 export const dynamic = "force-static";
 export const revalidate = 120;
@@ -79,11 +80,13 @@ export default async function EventsPage() {
             </div>
           ) : (
             <div className="events-grid">
-              {events.map((event) => (
+              {events.map((event) => {
+                const imageUrl = safeUrl(event.image_url);
+                return (
                 <article className="event-card" key={event.id}>
                   <div className="event-thumb">
-                    {event.image_url ? (
-                      <img src={event.image_url} alt={event.title} loading="lazy" />
+                    {imageUrl ? (
+                      <img src={imageUrl} alt={event.title} loading="lazy" />
                     ) : (
                       <div className="event-thumb-fallback">
                         <i className="fas fa-calendar-alt"></i>
@@ -137,7 +140,8 @@ export default async function EventsPage() {
                     </div>
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

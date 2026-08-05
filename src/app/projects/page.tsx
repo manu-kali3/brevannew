@@ -3,6 +3,7 @@ import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import { listProjects } from "@/lib/supabase";
 import { listSiteImages } from "@/lib/site-settings";
+import { safeUrl } from "@/lib/validation";
 
 export const dynamic = "force-static";
 export const revalidate = 300;
@@ -46,12 +47,15 @@ export default async function ProjectsPage() {
             </div>
           ) : (
             <div className="projects-grid">
-              {projects.map((project) => (
+              {projects.map((project) => {
+                const imageUrl = safeUrl(project.image_url);
+                const projectUrl = safeUrl(project.project_url);
+                return (
                 <article className="project-card" key={project.id}>
                   <div className="project-thumb">
-                    {project.image_url ? (
+                    {imageUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={project.image_url} alt={project.title} />
+                      <img src={imageUrl} alt={project.title} />
                     ) : (
                       <div className="project-thumb-fallback">
                         <i className="fas fa-laptop-code"></i>
@@ -66,10 +70,10 @@ export default async function ProjectsPage() {
                     {project.description && (
                       <p className="project-desc">{project.description}</p>
                     )}
-                    {project.project_url && (
+                    {projectUrl && (
                       <a
                         className="project-link"
-                        href={project.project_url}
+                        href={projectUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -78,7 +82,8 @@ export default async function ProjectsPage() {
                     )}
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

@@ -1,10 +1,20 @@
 import { NextResponse } from "next/server";
 import { storeLead } from "@/lib/supabase";
 import { sendEmail, ownerNotification, autoresponse } from "@/lib/email";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
+import { stripCRLF } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
+  const limiter = rateLimit(`quote:${clientIp(request)}`, 10, 10 * 60 * 1000);
+  if (!limiter.ok) {
+    return NextResponse.json(
+      { error: "Too many requests. Try again later." },
+      { status: 429, headers: { "Retry-After": String(limiter.retryAfter) } }
+    );
+  }
+
   let body: Record<string, string>;
   try {
     body = await request.json();
@@ -12,10 +22,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const name = body.name?.trim() ?? "";
-  const email = body.email?.trim() ?? "";
-  const subject = body.subject?.trim() ?? "";
-  const service = body.service?.trim() ?? "";
+  // Honeypot: real users never fill this hidden field.
+  if (body.website && body.website.trim().length > 0) {
+    return NextResponse.json({ ok: true });
+  }
+
+  const name = stripCRLF(body.name ?? "");
+  const email = stripCRLF(body.email ?? "");
+  const subject = stripCRLF(body.subject ?? "");
+  const service = stripCRLF(body.service ?? "");
 
   if (!name || !email) {
     return NextResponse.json(
@@ -23,9 +38,12 @@ export async function POST(request: Request) {
       { status: 400 }
     );
   }
+  if (name.length > 200 || subject.length > 300 || service.length > 500) {
+    return NextResponse.json({ error: "Please shorten your request." }, { status: 400 });
+  }
 
   const emailPattern = /^[^ @]+@[^ @]+$/;
-  if (!emailPattern.test(email)) {
+  if (!emailPattern.test(email) || email.length > 320) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 

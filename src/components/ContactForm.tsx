@@ -18,6 +18,7 @@ export default function ContactForm() {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      website: (form.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "",
     };
 
     try {
@@ -43,6 +44,7 @@ export default function ContactForm() {
 
   return (
     <form id="contact" onSubmit={handleSubmit} noValidate>
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", opacity: 0 }} />
       <div className="row">
         <div className="col-lg-6">
           <fieldset>

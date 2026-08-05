@@ -6,7 +6,7 @@ import SiteImagesProvider from "@/components/SiteImagesProvider";
 import { listSiteImages } from "@/lib/site-settings";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevannew.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevansoftwares.co.ke";
 
 export const dynamic = "force-static";
 export const revalidate = 300;

@@ -28,6 +28,7 @@ export default function QuoteForm() {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
       service: (form.elements.namedItem("Category") as HTMLSelectElement).value,
+      website: (form.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "",
     };
 
     try {
@@ -53,6 +54,7 @@ export default function QuoteForm() {
 
   return (
     <form id="calculate" onSubmit={handleSubmit} noValidate>
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", opacity: 0 }} />
       <div className="row">
         <div className="col-lg-6">
           <fieldset>
