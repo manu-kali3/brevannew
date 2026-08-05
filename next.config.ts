@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+// React/Next dev tools (Fast Refresh, callstack reconstruction) need eval()
+// in development only. Production keeps the strict policy.
+const IS_DEV = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   turbopack: {
@@ -18,7 +22,7 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'",
+              `script-src 'self' 'unsafe-inline'${IS_DEV ? " 'unsafe-eval'" : ""}`,
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data: https://fonts.gstatic.com",
