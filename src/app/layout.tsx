@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SiteImagesProvider from "@/components/SiteImagesProvider";
 import { listSiteImages } from "@/lib/site-settings";
+import { OfflineBanner, MaintenanceBanner } from "@/components/SystemStatus";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevansoftwares.co.ke";
@@ -56,6 +57,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const images = await listSiteImages();
+  const dbDown = !process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
@@ -98,6 +100,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         />
       </head>
       <body>
+        <OfflineBanner />
+        <MaintenanceBanner isDown={dbDown} />
         <SiteImagesProvider images={images}>
           <Header />
           {children}
