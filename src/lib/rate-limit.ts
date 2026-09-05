@@ -45,9 +45,27 @@ export function rateLimit(
   return { ok: true, retryAfter: 0 };
 }
 
-/** Best-effort client IP from proxy headers (Vercel sets x-forwarded-for). */
 export function clientIp(request: Request): string {
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
   const fwd = request.headers.get("x-forwarded-for");
-  if (fwd) return fwd.split(",")[0].trim() || "unknown";
-  return request.headers.get("x-real-ip") ?? "unknown";
+  if (fwd) {
+    const parts = fwd.split(",").map((s) => s.trim()).filter(Boolean);
+    if (parts.length > 0) return parts[parts.length - 1];
+  }
+  return "unknown";
+}
+
+export function verifyCsrf(request: Request): boolean {
+  const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
+  const host = request.headers.get("host") ?? request.headers.get("x-forwarded-host") ?? "";
+  if (!origin && !referer) return true;
+  const check = origin ?? referer ?? "";
+  try {
+    const url = new URL(check);
+    return url.host === host;
+  } catch {
+    return false;
+  }
 }
