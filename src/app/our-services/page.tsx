@@ -67,9 +67,9 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     side: "right",
   },
   {
-    icon: "fab fa-wordpress",
-    title: "WordPress & Joomla",
-    text: "We build professional websites on WordPress and Joomla so you can easily manage your own content. We handle themes, plugins, setup, security and maintenance, giving you a powerful and flexible website without the technical stress.",
+    icon: "fas fa-cash-register",
+    title: "POS Systems",
+    text: "Modern Point of Sale systems for shops, restaurants and retail — stock control, M-Pesa payments, receipts and reports in one fast, offline-ready system.",
     imageKey: "service_2",
     side: "left",
   },
@@ -111,7 +111,7 @@ export default async function OurServicesPage() {
       <PageHeading
         title="Our Services"
         kicker="What We Do"
-        subtitle="Web design, WordPress and Joomla, e-commerce, real estate platforms, graphic design and AI automation — all crafted to help your business grow."
+        subtitle="Web design, WordPress, POS systems, e-commerce, real estate platforms, graphic design and AI automation — all crafted to help your business grow."
         image={images.hero_services}
       />
       <section className="main-services">

@@ -16,9 +16,9 @@ const services: Service[] = [
     text: "Professional WordPress websites, themes and plugins with easy content management and full maintenance support.",
   },
   {
-    icon: "fab fa-joomla",
-    title: "Joomla",
-    text: "Robust Joomla CMS development for content-rich websites, portals and community platforms.",
+    icon: "fas fa-cash-register",
+    title: "POS Systems",
+    text: "Modern Point of Sale systems for shops, restaurants and retail — stock, sales, M-Pesa and receipts in one place.",
   },
   {
     icon: "fas fa-shopping-cart",

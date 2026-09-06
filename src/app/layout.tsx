@@ -19,12 +19,12 @@ export const metadata: Metadata = {
     template: "%s | Brevan Softwares",
   },
   description:
-    "Brevan Softwares is a Kenyan technology initiative by Emmanuel Kiplangat offering AI automation, website design, WordPress, Joomla, e-commerce, real estate platforms and graphic design for local businesses, schools and communities.",
+    "Brevan Softwares is a Kenyan technology initiative by Emmanuel Kiplangat offering AI automation, website design, WordPress, POS, e-commerce, real estate platforms and graphic design for local businesses, schools and communities.",
   keywords: [
     "AI automation Kenya",
     "website design Kenya",
     "WordPress developer",
-    "Joomla development",
+    "POS Systems",
     "e-commerce Kenya",
     "graphic design Narok",
     "digital training Kenya",

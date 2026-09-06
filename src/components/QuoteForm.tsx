@@ -5,7 +5,7 @@ import { useState } from "react";
 const SERVICES = [
   "Website Design",
   "WordPress",
-  "Joomla",
+  "POS Systems",
   "E-Commerce",
   "Real Estate",
   "Graphic Design",

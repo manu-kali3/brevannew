@@ -13,7 +13,8 @@ const quickLinks = [
 
 const services = [
   "Website Design",
-  "WordPress & Joomla",
+  "WordPress",
+  "POS Systems",
   "E-Commerce Solutions",
   "Real Estate Platforms",
   "Graphic Design & Branding",

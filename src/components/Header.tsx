@@ -131,6 +131,16 @@ export default function Header() {
                     Contact Support
                   </Link>
                 </li>
+                <li>
+                  <a href="https://clients.brevansoftwares.co.ke" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#43ba7f", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
+                    Client Portal
+                  </a>
+                </li>
+                <li>
+                  <a href="https://clients.brevansoftwares.co.ke/signup" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#ff511a", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
+                    Start Application
+                  </a>
+                </li>
               </ul>
 
               <a

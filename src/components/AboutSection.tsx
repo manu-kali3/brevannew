@@ -17,7 +17,7 @@ const tabContent = [
     label: "Web & Design",
     content: (
       <p>
-        Custom business websites, e-commerce stores, WordPress and Joomla
+        Custom business websites, e-commerce stores, WordPress and POS
         platforms, and complete brand identities designed to make your business
         look professional and serve your customers online.
       </p>
