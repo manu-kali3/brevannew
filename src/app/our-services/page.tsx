@@ -125,7 +125,7 @@ export default async function OurServicesPage() {
                       <>
                         <div className="col-lg-6">
                           <div className="left-image">
-                            <img src={images[service.imageKey]} alt={service.title} />
+                            <img src={images[service.imageKey]} alt={service.title} loading="lazy" decoding="async" />
                           </div>
                         </div>
                         <div className="col-lg-6 align-self-center">
@@ -147,7 +147,7 @@ export default async function OurServicesPage() {
                         </div>
                         <div className="col-lg-6">
                           <div className="right-image">
-                            <img src={images[service.imageKey]} alt={service.title} />
+                            <img src={images[service.imageKey]} alt={service.title} loading="lazy" decoding="async" />
                           </div>
                         </div>
                       </>

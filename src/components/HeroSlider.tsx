@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Mousewheel, Keyboard } from "swiper/modules";
@@ -18,6 +19,9 @@ const INTERLEAVE_OFFSET = 0.5;
 
 export default function HeroSlider() {
   const images = useSiteImages();
+  const [loadedSlides, setLoadedSlides] = useState<Set<number>>(
+    () => new Set([0])
+  );
 
   const slides: Slide[] = [
     {
@@ -40,6 +44,21 @@ export default function HeroSlider() {
     },
   ];
 
+  // Lazily mark a slide (and its next neighbour) as "ready" so browsers
+  // only download hero backgrounds when they are (about to be) visible.
+  const markLoaded = (index: number) => {
+    setLoadedSlides((prev) => {
+      const next = new Set(prev);
+      next.add(index);
+      next.add((index + 1) % slides.length);
+      return next;
+    });
+  };
+
+  const handleSlideChange = (swiper: SwiperType) => {
+    markLoaded(swiper.realIndex);
+  };
+
   return (
     <div className="swiper-container" id="top">
       <Swiper
@@ -54,6 +73,7 @@ export default function HeroSlider() {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
+        onSlideChange={handleSlideChange}
         onProgress={(swiper: SwiperType) => {
           swiper.slides.forEach((slide) => {
             const inner = slide.querySelector<HTMLElement>(".slide-inner");
@@ -68,7 +88,11 @@ export default function HeroSlider() {
           <SwiperSlide key={i}>
             <div
               className="slide-inner"
-              style={{ backgroundImage: `url(${slide.background})` }}
+              style={
+                loadedSlides.has(i)
+                  ? { backgroundImage: `url(${slide.background})` }
+                  : undefined
+              }
             >
               <div className="container">
                 <div className="row">

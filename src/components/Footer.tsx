@@ -43,6 +43,8 @@ export default function Footer({ images }: { images: SiteImages }) {
                   <img
                     src={images.logo}
                     alt="Brevan Softwares"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <span className="footer-logo-text">Brevan Softwares</span>
                 </Link>

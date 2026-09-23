@@ -65,7 +65,7 @@ export default function Testimonials() {
                     <h4>{t.name}</h4>
                     <span>{t.role}</span>
                     <div className="right-image">
-                      <img src={images.testimonial_avatar} alt={t.name} />
+                      <img src={images.testimonial_avatar} alt={t.name} loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </SwiperSlide>

@@ -79,7 +79,7 @@ export default async function AboutUsPage() {
           <div className="row">
             <div className="col-lg-6">
               <div className="left-image">
-                <img src={images.about_image} alt="About Brevan Softwares" />
+                <img src={images.about_image} alt="About Brevan Softwares" loading="lazy" decoding="async" />
               </div>
             </div>
             <div className="col-lg-6 align-self-center">

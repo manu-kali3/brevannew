@@ -55,7 +55,7 @@ export default async function ProjectsPage() {
                   <div className="project-thumb">
                     {imageUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={imageUrl} alt={project.title} />
+                      <img src={imageUrl} alt={project.title} loading="lazy" decoding="async" />
                     ) : (
                       <div className="project-thumb-fallback">
                         <i className="fas fa-laptop-code"></i>

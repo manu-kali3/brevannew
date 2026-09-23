@@ -12,7 +12,7 @@ export default function CalculatorSection() {
         <div className="row">
           <div className="col-lg-7">
             <div className="left-image">
-              <img src={images.calculator_image} alt="Brevan Softwares solutions" />
+              <img src={images.calculator_image} alt="Brevan Softwares solutions" loading="lazy" decoding="async" />
             </div>
           </div>
           <div className="col-lg-5">

@@ -14,7 +14,7 @@ export default function Partners() {
           {LOGOS.map((n) => (
             <div className="col-lg-2 col-sm-4 col-6" key={n}>
               <div className="item">
-                <img src={images.partner_logo} alt="Partner" />
+                <img src={images.partner_logo} alt="Partner" loading="lazy" decoding="async" />
               </div>
             </div>
           ))}
