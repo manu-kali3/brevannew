@@ -4,7 +4,9 @@ import ContactForm from "@/components/ContactForm";
 import { listSiteImages } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Brevan Softwares",
+  description:
+    "Get in touch with Brevan Softwares for websites, AI automation, POS, e-commerce and school systems in Kenya. Call or WhatsApp +254 117 004 147, Narok, Kenya.",
 };
 
 const infoItems = [

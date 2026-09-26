@@ -5,7 +5,9 @@ import CtaSection from "@/components/CtaSection";
 import { listSiteImages } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Brevan Softwares - Web Design & AI in Kenya",
+  description:
+    "Meet Brevan Softwares, a Kenyan technology initiative by Emmanuel Kiplangat delivering AI automation, website design, POS, e-commerce and school management systems across Kenya.",
 };
 
 export const dynamic = "force-static";

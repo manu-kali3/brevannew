@@ -80,8 +80,34 @@ export default async function BlogPostPage({
     `${shareText} ${shareUrl}`
   )}`;
 
+  const postJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt ?? undefined,
+    datePublished: post.published_at ?? post.created_at,
+    dateModified: post.created_at,
+    image: cover ?? undefined,
+    author: post.author
+      ? { "@type": "Person", name: post.author }
+      : { "@type": "Organization", name: "Brevan Softwares" },
+    publisher: {
+      "@type": "Organization",
+      name: "Brevan Softwares",
+      url: SITE_URL,
+    },
+    url: shareUrl,
+    mainEntityOfPage: shareUrl,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(postJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="blog-post-hero">
         <div className="container">
           <Link className="blog-back" href="/blog">

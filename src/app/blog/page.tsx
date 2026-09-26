@@ -6,6 +6,9 @@ import { listPosts } from "@/lib/supabase";
 import { listSiteImages } from "@/lib/site-settings";
 import { safeUrl } from "@/lib/validation";
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevansoftwares.co.ke";
+
 export const dynamic = "force-static";
 export const revalidate = 300;
 
@@ -29,8 +32,26 @@ function formatDate(iso: string | null, created: string) {
 export default async function BlogPage() {
   const [posts, images] = await Promise.all([listPosts(), listSiteImages()]);
 
+  const blogListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Brevan Softwares Blog & Updates",
+    itemListElement: posts.map((post, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      name: post.title,
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogListLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <PageHeading
         title="Blog &amp; Updates"
         kicker="Latest News"

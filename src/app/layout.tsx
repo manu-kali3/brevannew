@@ -46,12 +46,21 @@ export const metadata: Metadata = {
     title: "Brevan Softwares - AI Automation & Web Design in Kenya",
     description:
       "AI automation, website design and digital tools that help local businesses, schools and communities across Kenya grow.",
+    images: [
+      {
+        url: `${SITE_URL}/assets/images/og-default.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Brevan Softwares - Web Design, AI Automation, POS, E-Commerce and School Systems in Kenya",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Brevan Softwares - AI Automation & Web Design in Kenya",
     description:
       "AI automation, website design and digital tools that help local businesses, schools and communities across Kenya grow.",
+    images: [`${SITE_URL}/assets/images/og-default.jpg`],
   },
   robots: {
     index: true,
@@ -92,6 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@type": "Organization",
               name: "Brevan Softwares",
               url: SITE_URL,
+              logo: `${SITE_URL}/assets/images/brevan-logo.jpg`,
               email: "brevansoftwares@gmail.com",
               telephone: "+254117004147",
               address: {
@@ -105,7 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               },
               description:
                 "AI automation, website design and digital tools for local businesses, schools and communities across Kenya.",
-            }),
+            }).replace(/</g, "\\u003c"),
           }}
         />
       </head>

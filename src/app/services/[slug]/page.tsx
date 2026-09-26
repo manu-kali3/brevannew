@@ -4,6 +4,7 @@ import ServicePageTemplate from "@/components/ServicePageTemplate";
 import { SERVICE_PAGES, getServicePage } from "@/lib/service-pages";
 import { listProjects } from "@/lib/supabase";
 import { listSiteImages } from "@/lib/site-settings";
+import { SITE_URL } from "@/app/sitemap";
 
 export const dynamic = "force-static";
 export const revalidate = 300;
@@ -51,11 +52,60 @@ export default async function ServicePage({
     listSiteImages(),
   ]);
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: content.name,
+    description: content.metaDescription,
+    url: `${SITE_URL}/services/${content.slug}`,
+    serviceType: content.name,
+    provider: {
+      "@type": "Organization",
+      name: "Brevan Softwares",
+      url: SITE_URL,
+    },
+    areaServed: { "@type": "Country", name: "Kenya" },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${SITE_URL}/our-services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: content.name,
+        item: `${SITE_URL}/services/${content.slug}`,
+      },
+    ],
+  };
+
   return (
-    <ServicePageTemplate
-      content={content}
-      images={images}
-      projects={projects}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <ServicePageTemplate
+        content={content}
+        images={images}
+        projects={projects}
+      />
+    </>
   );
 }

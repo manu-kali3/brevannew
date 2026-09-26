@@ -4,6 +4,8 @@ import { listSiteImages } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
+  description:
+    "How Brevan Softwares collects, uses and protects your personal information across contact forms, newsletter subscriptions, emails and analytics.",
 };
 
 export default async function PrivacyPolicyPage() {

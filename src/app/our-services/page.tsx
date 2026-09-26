@@ -8,7 +8,9 @@ import { listSiteImages, type ImageKey } from "@/lib/site-settings";
 type MissionImageKey = "service_details_1" | "service_details_2" | "service_details_3";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Web Design, AI Automation & Software Services in Kenya",
+  description:
+    "Brevan Softwares services: website design, AI automation, POS systems, e-commerce, school management, real estate platforms and graphic design for Kenyan businesses, schools and communities.",
 };
 
 export const dynamic = "force-static";
