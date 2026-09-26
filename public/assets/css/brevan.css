@@ -445,14 +445,20 @@ section.simple-cta {
     url(var(--img-bg_cta, ../images/cta-bg.jpg));
 }
 
-/* Extra insurance for the quote form text on any residual light
-   spots in the background image. */
+/* "Request a Free Quote" heading + form labels use the brand
+   green so they stand out on the dark background; text-shadow
+   keeps them readable on any residual light spots in the image. */
 #calculate label {
+  color: #43ba7f;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-section.calculator .section-heading h6,
+section.calculator .section-heading h6 {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
 section.calculator .section-heading h4 {
+  color: #43ba7f;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
