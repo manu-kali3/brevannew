@@ -158,7 +158,6 @@ insert into public.site_settings (key, value) values
   ('service_details_2', '/assets/images/service-details-02.jpg'),
   ('service_details_3', '/assets/images/service-details-03.jpg'),
   ('about_image', '/assets/images/about-left-image.jpg'),
-  ('calculator_image', '/assets/images/calculator-image.png'),
   ('testimonial_avatar', '/assets/images/testimonials-01.jpg'),
   ('partner_logo', '/assets/images/client-01.png'),
   ('bg_header', '/assets/images/header-bg.png'),
