@@ -163,6 +163,15 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
+                  <Link
+                    href="/blog"
+                    className={navLinkClass(pathname === "/blog")}
+                    onClick={closeMenu}
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li>
                   <Link href="/contact-us" onClick={closeMenu}>
                     Contact Support
                   </Link>

@@ -173,3 +173,66 @@ export const listProjects = unstable_cache(loadProjects, ["site-projects"], {
   revalidate: 300,
   tags: ["site-projects"],
 });
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string | null;
+  cover_image: string | null;
+  content: string;
+  tags: string[] | null;
+  author: string | null;
+  published_at: string | null;
+  created_at: string;
+}
+
+const POST_SELECT =
+  "id,slug,title,excerpt,cover_image,content,tags,author,published_at,created_at";
+
+async function loadPosts(): Promise<BlogPost[]> {
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("posts")
+    .select(POST_SELECT)
+    .order("published_at", { ascending: false, nullsFirst: false })
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Supabase posts query error:", error.message);
+    return [];
+  }
+
+  return (data ?? []) as BlogPost[];
+}
+
+/** Cached posts list (ISR) for /blog and the sitemap. */
+export const listPosts = unstable_cache(loadPosts, ["site-posts"], {
+  revalidate: 300,
+  tags: ["site-posts"],
+});
+
+async function loadPost(slug: string): Promise<BlogPost | null> {
+  if (!supabase) return null;
+
+  const { data, error } = await supabase
+    .from("posts")
+    .select(POST_SELECT)
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Supabase post query error:", error.message);
+    return null;
+  }
+
+  return (data ?? null) as BlogPost | null;
+}
+
+/** Cached single post (ISR) for /blog/[slug]. */
+export const getPost = unstable_cache(
+  (slug: string) => loadPost(slug),
+  ["site-post"],
+  { revalidate: 300, tags: ["site-posts"] }
+);

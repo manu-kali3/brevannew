@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { listPosts } from "@/lib/supabase";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevansoftwares.co.ke";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const serviceSlugs = [
@@ -19,6 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
+  }));
+
+  const posts = await listPosts();
+  const postEntries = posts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: post.published_at ?? post.created_at,
+    changeFrequency: "daily" as const,
+    priority: 0.7,
   }));
 
   return [
@@ -59,6 +68,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${SITE_URL}/blog`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    ...postEntries,
     {
       url: `${SITE_URL}/privacy-policy`,
       lastModified: now,

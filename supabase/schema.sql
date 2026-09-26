@@ -119,6 +119,44 @@ create policy "subscribers are manageable by service role"
   using (true)
   with check (true);
 
+-- Blog posts (daily updates from the Brevan team).
+create table if not exists public.posts (
+  id uuid primary key default gen_random_uuid(),
+  slug text not null unique,
+  title text not null,
+  excerpt text,
+  cover_image text,
+  content text not null default '',
+  tags text[],
+  author text,
+  published_at timestamptz,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table public.posts enable row level security;
+
+-- Public site reads posts (anon key) for the /blog pages.
+drop policy if exists "posts are publicly readable" on public.posts;
+create policy "posts are publicly readable"
+  on public.posts
+  for select
+  to anon
+  using (true);
+
+-- Admin app writes posts using the service role (bypasses RLS).
+drop policy if exists "posts are manageable by service role" on public.posts;
+create policy "posts are manageable by service role"
+  on public.posts
+  for all
+  to service_role
+  using (true)
+  with check (true);
+
+create index if not exists idx_posts_slug on public.posts (slug);
+create index if not exists idx_posts_published
+  on public.posts (published_at desc nulls last, created_at desc);
+
 -- Performance indexes for the common read/write paths.
 -- Events are listed ordered by date on both the public site and the admin app.
 create index if not exists idx_events_event_date
@@ -190,7 +228,7 @@ insert into public.site_settings (key, value) values
   ('service_details_2', '/assets/images/service-details-02.webp'),
   ('service_details_3', '/assets/images/service-details-03.webp'),
   ('about_image', '/assets/images/about-left-image.webp'),
-  ('testimonial_avatar', '/assets/images/testimonials-01.webp'),
+  ('hero_blog', '/assets/images/slide-02.webp'),
   ('partner_logo', '/assets/images/client-01.png'),
   ('bg_header', '/assets/images/header-bg.png'),
   ('bg_cta', '/assets/images/cta-bg.webp'),
