@@ -2,7 +2,10 @@ import { createClient } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+// New Supabase projects issue publishable/secret keys (sb_publishable_* /
+// sb_secret_*) instead of legacy anon/service_role JWTs. Accept both.
+const serviceRoleKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SECRET_KEY;
 
 export const supabase =
   url && serviceRoleKey
