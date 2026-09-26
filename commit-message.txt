@@ -1,0 +1,9 @@
+remove the testimonials section and its nav link
+
+The "What They Say" testimonials were placeholder personas with made-up
+quotes (John Kiprop, Grace Wanjiru, Brian Otieno). Removed:
+- src/components/Testimonials.tsx (deleted)
+- Home page import + <Testimonials /> usage
+- Header "Testimonials" scroll nav item + its href constant
+
+Real customer testimonials can be re-added later with verified content.

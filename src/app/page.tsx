@@ -3,7 +3,6 @@ import ServicesCards from "@/components/ServicesCards";
 import CtaSection from "@/components/CtaSection";
 import AboutSection from "@/components/AboutSection";
 import CalculatorSection from "@/components/CalculatorSection";
-import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <CtaSection />
       <AboutSection />
       <CalculatorSection />
-      <Testimonials />
     </>
   );
 }

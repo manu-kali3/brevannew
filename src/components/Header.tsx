@@ -34,7 +34,6 @@ export default function Header() {
   };
 
   const aboutHref = isHome ? "#about" : "/about-us";
-  const testimonialsHref = isHome ? "#testimonials" : "/";
 
   const navLinkClass = (active: boolean) => (active ? "active" : "");
 
@@ -144,15 +143,6 @@ export default function Header() {
                       </Link>
                     </li>
                   </ul>
-                </li>
-                <li className="scroll-to-section">
-                  <Link
-                    href={testimonialsHref}
-                    className={navLinkClass(false)}
-                    onClick={handleHashClick(testimonialsHref)}
-                  >
-                    Testimonials
-                  </Link>
                 </li>
                 <li>
                   <Link
