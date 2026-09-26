@@ -422,6 +422,40 @@ section.about-us ul.nacc li p {
   color: #7fe6ae;
 }
 
+/* Section backgrounds come from runtime CSS variables
+   (--img-bg_calculator etc.). If a browser drops the
+   url(var(...)) declaration or the image fails to load, these
+   sections previously had NO background-color — leaving all the
+   white quote-form/heading text invisible on the white page.
+   Solid dark base + dark gradient overlay guarantee the text is
+   always readable, whatever the background state. */
+section.calculator,
+section.simple-cta,
+.page-heading {
+  background-color: #171d2e;
+}
+
+section.calculator {
+  background-image: linear-gradient(rgba(10, 15, 26, 0.55), rgba(10, 15, 26, 0.55)),
+    url(var(--img-bg_calculator, ../images/calculator-bg.jpg));
+}
+
+section.simple-cta {
+  background-image: linear-gradient(rgba(10, 15, 26, 0.55), rgba(10, 15, 26, 0.55)),
+    url(var(--img-bg_cta, ../images/cta-bg.jpg));
+}
+
+/* Extra insurance for the quote form text on any residual light
+   spots in the background image. */
+#calculate label {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+section.calculator .section-heading h6,
+section.calculator .section-heading h4 {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
 /* Events page */
 .events-section {
   padding: 90px 0;
