@@ -875,7 +875,10 @@ section.calculator #calculate fieldset:last-child {
   justify-content: center;
   text-align: center;
   padding: 80px 20px;
-  background-color: #fff;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(67, 186, 127, 0.16), transparent 55%),
+    radial-gradient(ellipse at 115% 115%, rgba(255, 81, 26, 0.08), transparent 55%),
+    linear-gradient(135deg, #181d30 0%, #131a2e 50%, #0d1226 100%);
 }
 
 .error-page .error-inner {
@@ -892,12 +895,12 @@ section.calculator #calculate fieldset:last-child {
 
 .error-page h1 {
   margin: 24px 0 12px;
-  color: #212741;
+  color: #ffffff;
   font-weight: 700;
 }
 
 .error-page p {
-  color: #7a7a7a;
+  color: #c2c9da;
   font-size: 16px;
   line-height: 28px;
   margin-bottom: 32px;
