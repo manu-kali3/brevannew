@@ -9,7 +9,9 @@ import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
 
 export const dynamic = "force-static";
 export const revalidate = 300;
-export const dynamicParams = false;
+// dynamicParams defaults to true: posts added after deploy are generated
+// on demand on first visit, then cached for `revalidate`. (false would
+// 404 every new slug until the next rebuild.)
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevansoftwares.co.ke";
