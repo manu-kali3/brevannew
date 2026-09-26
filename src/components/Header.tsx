@@ -32,7 +32,6 @@ export default function Header() {
     }
   };
 
-  const servicesHref = isHome ? "#services" : "/our-services";
   const aboutHref = isHome ? "#about" : "/about-us";
   const testimonialsHref = isHome ? "#testimonials" : "/";
 
@@ -61,14 +60,60 @@ export default function Header() {
                     Home
                   </Link>
                 </li>
-                <li className="scroll-to-section">
-                  <Link
-                    href={servicesHref}
-                    className={navLinkClass(false)}
-                    onClick={handleHashClick(servicesHref)}
-                  >
-                    Services
-                  </Link>
+                <li className="has-sub">
+                  <button type="button" className="pages-btn">Services</button>
+                  <ul className="sub-menu">
+                    <li>
+                      <Link
+                        href="/services/website-design"
+                        className={pathname === "/services/website-design" ? "active" : ""}
+                        onClick={closeMenu}
+                      >
+                        Website Design
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/school-management"
+                        className={pathname === "/services/school-management" ? "active" : ""}
+                        onClick={closeMenu}
+                      >
+                        School Management
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/pos-systems"
+                        className={pathname === "/services/pos-systems" ? "active" : ""}
+                        onClick={closeMenu}
+                      >
+                        POS Systems
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/e-commerce"
+                        className={pathname === "/services/e-commerce" ? "active" : ""}
+                        onClick={closeMenu}
+                      >
+                        E-Commerce
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/services/ai-automation"
+                        className={pathname === "/services/ai-automation" ? "active" : ""}
+                        onClick={closeMenu}
+                      >
+                        AI Automation
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/our-services" onClick={closeMenu}>
+                        All Services
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
                 <li className="scroll-to-section">
                   <Link
