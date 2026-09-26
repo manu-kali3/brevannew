@@ -11,6 +11,27 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // Long-lived caching for static media so repeat visits — and the
+      // Lighthouse "efficient cache lifetimes" audit — don't re-download
+      // them. CSS keeps a short cache so styling deploys land quickly.
+      {
+        source: "/assets/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/vendor/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/assets/css/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=600" },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [

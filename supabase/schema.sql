@@ -139,29 +139,33 @@ create policy "site settings are manageable by service role"
   using (true)
   with check (true);
 
--- Seed default values (first run only; edits are preserved on re-run).
+-- Seed default values. WebP versions (85-95% smaller than the JPG
+-- originals) are used because these values override the code fallbacks
+-- at runtime, and the JPG heroes (~350 KB each) dominated LCP on slow
+-- connections. `do update` lets you re-run this file to upgrade an
+-- existing project to the lighter images.
 insert into public.site_settings (key, value) values
   ('logo', '/assets/images/brevan-logo.jpg'),
-  ('hero_1', '/assets/images/slide-01.jpg'),
-  ('hero_2', '/assets/images/slide-02.jpg'),
-  ('hero_3', '/assets/images/slide-03.jpg'),
-  ('hero_projects', '/assets/images/slide-01.jpg'),
-  ('hero_events', '/assets/images/slide-02.jpg'),
-  ('hero_services', '/assets/images/slide-03.jpg'),
-  ('hero_about', '/assets/images/slide-01.jpg'),
-  ('hero_contact', '/assets/images/slide-02.jpg'),
-  ('hero_privacy', '/assets/images/slide-03.jpg'),
-  ('service_1', '/assets/images/service-image-01.jpg'),
-  ('service_2', '/assets/images/service-image-02.jpg'),
-  ('service_3', '/assets/images/service-image-03.jpg'),
-  ('service_details_1', '/assets/images/service-details-01.jpg'),
-  ('service_details_2', '/assets/images/service-details-02.jpg'),
-  ('service_details_3', '/assets/images/service-details-03.jpg'),
-  ('about_image', '/assets/images/about-left-image.jpg'),
-  ('testimonial_avatar', '/assets/images/testimonials-01.jpg'),
+  ('hero_1', '/assets/images/slide-01.webp'),
+  ('hero_2', '/assets/images/slide-02.webp'),
+  ('hero_3', '/assets/images/slide-03.webp'),
+  ('hero_projects', '/assets/images/slide-01.webp'),
+  ('hero_events', '/assets/images/slide-02.webp'),
+  ('hero_services', '/assets/images/slide-03.webp'),
+  ('hero_about', '/assets/images/slide-01.webp'),
+  ('hero_contact', '/assets/images/slide-02.webp'),
+  ('hero_privacy', '/assets/images/slide-03.webp'),
+  ('service_1', '/assets/images/service-image-01.webp'),
+  ('service_2', '/assets/images/service-image-02.webp'),
+  ('service_3', '/assets/images/service-image-03.webp'),
+  ('service_details_1', '/assets/images/service-details-01.webp'),
+  ('service_details_2', '/assets/images/service-details-02.webp'),
+  ('service_details_3', '/assets/images/service-details-03.webp'),
+  ('about_image', '/assets/images/about-left-image.webp'),
+  ('testimonial_avatar', '/assets/images/testimonials-01.webp'),
   ('partner_logo', '/assets/images/client-01.png'),
   ('bg_header', '/assets/images/header-bg.png'),
-  ('bg_cta', '/assets/images/cta-bg.jpg'),
-  ('bg_calculator', '/assets/images/calculator-bg.jpg'),
-  ('bg_heading', '/assets/images/heading-bg.jpg')
-on conflict (key) do nothing;
+  ('bg_cta', '/assets/images/cta-bg.webp'),
+  ('bg_calculator', '/assets/images/calculator-bg.webp'),
+  ('bg_heading', '/assets/images/heading-bg.webp')
+on conflict (key) do update set value = excluded.value;

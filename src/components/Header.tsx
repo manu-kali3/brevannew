@@ -46,7 +46,7 @@ export default function Header() {
           <div className="col-12">
             <nav className="main-nav">
               <Link href="/" className="logo" onClick={closeMenu}>
-                <img src={images.logo} alt="Brevan Softwares" />
+                <img src={images.logo} alt="" />
                 <span className="logo-text">Brevan Softwares</span>
               </Link>
 
@@ -177,23 +177,26 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://clients.brevansoftwares.co.ke" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#43ba7f", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
+                  <a href="https://clients.brevansoftwares.co.ke" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#1f7a4d", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
                     Client Portal
                   </a>
                 </li>
                 <li>
-                  <a href="https://clients.brevansoftwares.co.ke/signup" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#ff511a", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
+                  <a href="https://clients.brevansoftwares.co.ke/signup" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#d63f09", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
                     Start Application
                   </a>
                 </li>
               </ul>
 
-              <a
+              <button
+                type="button"
+                aria-label="Toggle menu"
+                aria-expanded={menuOpen}
                 className={`menu-trigger ${menuOpen ? "active" : ""}`}
                 onClick={() => setMenuOpen((open) => !open)}
               >
                 <span>Menu</span>
-              </a>
+              </button>
             </nav>
           </div>
         </div>

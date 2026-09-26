@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SiteImagesProvider from "@/components/SiteImagesProvider";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import AsyncCss from "@/components/AsyncCss";
 import { listSiteImages } from "@/lib/site-settings";
 import { OfflineBanner, MaintenanceBanner } from "@/components/SystemStatus";
 
@@ -80,10 +81,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
         <link rel="preload" as="image" href={images.hero_1} fetchPriority="high" />
         <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/assets/css/fontawesome.css" />
         <link rel="stylesheet" href="/assets/css/templatemo-574-mexant.css" />
         <link rel="stylesheet" href="/assets/css/brevan.css" />
-        <link rel="stylesheet" href="/assets/css/owl.css" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -125,6 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {children}
           <Footer images={images} />
         </SiteImagesProvider>
+        <AsyncCss />
         <WhatsAppButton />
       </body>
     </html>

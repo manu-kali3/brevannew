@@ -19,7 +19,7 @@ export default function CtaSection() {
               <div className="orange-button">
                 <Link href="/contact-us">Contact Us</Link>
               </div>
-              <a href="https://clients.brevansoftwares.co.ke/signup" target="_blank" rel="noopener noreferrer" style={{ background: "#43ba7f", color: "#fff", padding: "12px 22px", borderRadius: 30, fontWeight: 700, textDecoration: "none" }}>
+              <a href="https://clients.brevansoftwares.co.ke/signup" target="_blank" rel="noopener noreferrer" style={{ background: "#1f7a4d", color: "#fff", padding: "12px 22px", borderRadius: 30, fontWeight: 700, textDecoration: "none" }}>
                 Start Application
               </a>
             </div>

@@ -28,7 +28,8 @@ Table of contents
 font & reset css
 --------------------------------------------- 
 */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900");
+/* the Open Sans @import was removed: it loaded an extra font over the
+   network and made rendering block; the site only uses Poppins. */
 /* 
 ---------------------------------------------
 reset
@@ -200,7 +201,9 @@ section {
 .section-heading h6 {
   font-size: 16px;
   text-transform: uppercase;
-  color: #ff511a;
+  /* #ff511a is only 3.26:1 on white (fails AA); #d63f09 passes 4.5:1.
+     The quote section on dark navy restores #ff511a in brevan.css. */
+  color: #d63f09;
   font-weight: 700;
 }
 

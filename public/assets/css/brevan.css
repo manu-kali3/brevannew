@@ -1515,3 +1515,112 @@ section.calculator #calculate fieldset:last-child {
     display: none;
   }
 }
+
+/* ============================================================
+   Accessibility contrast + semantics pass (Lighthouse)
+   ------------------------------------------------------------
+   White text on the brand colors and small brand-colored text on
+   white must meet AA (4.5:1). Brand tones are darkened where white
+   text sits on them; the #43ba7f accents that sit on dark navy
+   (quote-form labels, footer hover, calculator states) already pass
+   and are deliberately kept.
+   ============================================================ */
+
+/* Accessible hidden heading (home page <h1>). */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* White text on green buttons/badges: #43ba7f is 2.45:1 (fails);
+   #1f7a4d is ~5.3:1 (passes). */
+.green-button a,
+.green-button a:hover,
+.green-button button,
+.green-button button:hover,
+.header-area .main-nav .nav li:last-child a,
+.header-area .main-nav .nav li:last-child a:hover,
+.event-book-btn,
+.event-book-btn:hover,
+.newsletter-form button,
+.newsletter-form button:hover,
+.project-category,
+.footer-social:hover {
+  background-color: #1f7a4d;
+}
+
+/* White text on orange buttons/badges: #ff511a is 3.26:1 (fails);
+   #d63f09 is ~4.5:1 (passes). */
+.orange-button a,
+.orange-button a:hover,
+.orange-button button,
+.orange-button button:hover,
+#calculate button.orange-button,
+#calculate button.orange-button:hover,
+#contact button.orange-button,
+#contact button.orange-button:hover,
+.event-price-badge {
+  background-color: #d63f09;
+}
+
+/* Small orange text on white (section eyebrows) -> AA pass. */
+.section-heading h6 {
+  color: #d63f09;
+}
+
+/* Small green text on white -> AA pass. */
+.event-venue,
+.event-venue i,
+.event-title-link:hover,
+.event-format i,
+.service-learn-more:hover,
+#contact .form-status.success {
+  color: #1f7a4d;
+}
+
+/* The quote form sits on dark navy where the original brand orange
+   (#ff511a, ~5.2:1) and green (#43ba7f, ~6.8:1) both pass AA and
+   are the requested brand colors, so they are restored here. */
+section.calculator .section-heading h6 {
+  color: #ff511a;
+}
+
+/* Footer muted text on #181d30: #9aa0b4 is ~3.9:1 (fails);
+   #c2c9da is ~8:1 (passes). */
+.footer-about,
+.footer-links li a,
+.footer-contact li,
+.footer-contact li a,
+.footer-bottom p,
+.footer-legal li a {
+  color: #c2c9da !important;
+}
+
+/* WhatsApp float: white 15px label needs AA; brand #25d366 is 2.1:1
+   (fails) -> deep green #14784b is ~5.5:1 (passes). */
+.whatsapp-float {
+  background-color: #14784b;
+  box-shadow: 0px 6px 20px rgba(20, 120, 75, 0.45);
+}
+
+.whatsapp-float:hover {
+  box-shadow: 0px 10px 26px rgba(20, 120, 75, 0.55);
+}
+
+/* Mobile menu trigger is a <button> (was an <a> with no href, which
+   is not crawlable and not keyboard-active); neutralise the native
+   button chrome so it looks identical to before. */
+.header-area .main-nav .menu-trigger {
+  border: none;
+  padding: 0;
+  background: none;
+  font: inherit;
+  color: #fff;
+}

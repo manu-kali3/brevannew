@@ -44,7 +44,7 @@ export default function Footer({ images }: { images: SiteImages }) {
                 <Link href="/" className="footer-logo">
                   <img
                     src={images.logo}
-                    alt="Brevan Softwares"
+                    alt=""
                     loading="lazy"
                     decoding="async"
                   />
@@ -56,20 +56,21 @@ export default function Footer({ images }: { images: SiteImages }) {
                   skills for businesses, schools and communities.
                 </p>
                 <div className="footer-socials" aria-label="Social media">
-                  {socials.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href ?? "#"}
-                      className="footer-social"
-                      aria-label={social.label}
-                      title={social.label}
-                      {...(social.href
-                        ? { target: "_blank", rel: "noopener noreferrer" }
-                        : {})}
-                    >
-                      <i className={social.icon}></i>
-                    </a>
-                  ))}
+                  {socials
+                    .filter((social) => social.href)
+                    .map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        className="footer-social"
+                        aria-label={social.label}
+                        title={social.label}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className={social.icon}></i>
+                      </a>
+                    ))}
                 </div>
               </div>
             </div>
