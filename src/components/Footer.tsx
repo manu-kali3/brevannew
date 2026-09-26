@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NewsletterForm from "@/components/NewsletterForm";
+import { WHATSAPP_LINK } from "@/lib/whatsapp";
 import type { SiteImages } from "@/lib/site-settings";
 
 const quickLinks = [
@@ -12,13 +13,14 @@ const quickLinks = [
 ];
 
 const services = [
-  "Website Design",
-  "WordPress",
-  "POS Systems",
-  "E-Commerce Solutions",
-  "Real Estate Platforms",
-  "Graphic Design & Branding",
-  "AI Automation",
+  { label: "Website Design", href: "/services/website-design" },
+  { label: "WordPress", href: "/our-services" },
+  { label: "POS Systems", href: "/services/pos-systems" },
+  { label: "E-Commerce Solutions", href: "/services/e-commerce" },
+  { label: "School Management", href: "/services/school-management" },
+  { label: "AI Automation", href: "/services/ai-automation" },
+  { label: "Real Estate Platforms", href: "/our-services" },
+  { label: "Graphic Design & Branding", href: "/our-services" },
 ];
 
 const socials = [
@@ -26,7 +28,7 @@ const socials = [
   { label: "X (Twitter)", icon: "fab fa-x-twitter" },
   { label: "Instagram", icon: "fab fa-instagram" },
   { label: "LinkedIn", icon: "fab fa-linkedin-in" },
-  { label: "WhatsApp", icon: "fab fa-whatsapp" },
+  { label: "WhatsApp", icon: "fab fa-whatsapp", href: WHATSAPP_LINK },
 ];
 
 export default function Footer({ images }: { images: SiteImages }) {
@@ -57,10 +59,13 @@ export default function Footer({ images }: { images: SiteImages }) {
                   {socials.map((social) => (
                     <a
                       key={social.label}
-                      href="#"
+                      href={social.href ?? "#"}
                       className="footer-social"
                       aria-label={social.label}
                       title={social.label}
+                      {...(social.href
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
                     >
                       <i className={social.icon}></i>
                     </a>
@@ -84,8 +89,8 @@ export default function Footer({ images }: { images: SiteImages }) {
               <h4 className="footer-title">Our Services</h4>
               <ul className="footer-links">
                 {services.map((service) => (
-                  <li key={service}>
-                    <Link href="/our-services">{service}</Link>
+                  <li key={service.label}>
+                    <Link href={service.href}>{service.label}</Link>
                   </li>
                 ))}
               </ul>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import Tabs from "@/components/Tabs";
@@ -58,13 +59,14 @@ const missionContent: Record<MissionImageKey, { heading: string; body: string; p
   },
 };
 
-const services: { icon: string; title: string; text: string; imageKey: ImageKey; side: string }[] = [
+const services: { icon: string; title: string; text: string; imageKey: ImageKey; side: string; href?: string }[] = [
   {
     icon: "fas fa-laptop-code",
     title: "Website Design",
     text: "We design and develop custom, modern websites that look great and work perfectly on mobile, tablet and desktop. From simple business sites to content-rich platforms, we build websites that help your business grow and reach more customers online.",
     imageKey: "service_1",
     side: "right",
+    href: "/services/website-design",
   },
   {
     icon: "fas fa-cash-register",
@@ -72,6 +74,7 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     text: "Modern Point of Sale systems for shops, restaurants and retail — stock control, M-Pesa payments, receipts and reports in one fast, offline-ready system.",
     imageKey: "service_2",
     side: "left",
+    href: "/services/pos-systems",
   },
   {
     icon: "fas fa-shopping-cart",
@@ -79,6 +82,7 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     text: "Launch a secure online store with easy product management, mobile money and card payments, and order tracking. We help Kenyan businesses sell their products online to customers everywhere.",
     imageKey: "service_3",
     side: "right",
+    href: "/services/e-commerce",
   },
   {
     icon: "fas fa-building",
@@ -88,18 +92,27 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     side: "left",
   },
   {
+    icon: "fas fa-graduation-cap",
+    title: "School Management Systems",
+    text: "One cloud system for students, fees, exams, report cards and parent communication — built for how Kenyan schools actually work.",
+    imageKey: "service_2",
+    side: "right",
+    href: "/services/school-management",
+  },
+  {
     icon: "fas fa-palette",
     title: "Graphic Design & Branding",
     text: "Logos, brand identities, posters, flyers, banners and marketing materials that make your business look professional and memorable. A strong brand builds trust and sets you apart from competitors.",
-    imageKey: "service_2",
-    side: "right",
+    imageKey: "service_3",
+    side: "left",
   },
   {
     icon: "fas fa-robot",
     title: "AI Automation",
     text: "Bring artificial intelligence into your daily operations with chatbots, automated workflows, smart content and data dashboards. We help schools and local enterprises save time, cut costs and stay ahead of the digital curve.",
-    imageKey: "service_3",
-    side: "left",
+    imageKey: "service_1",
+    side: "right",
+    href: "/services/ai-automation",
   },
 ];
 
@@ -133,6 +146,11 @@ export default async function OurServicesPage() {
                             <i className={service.icon}></i>
                             <h4>{service.title}</h4>
                             <p>{service.text}</p>
+                            {service.href && (
+                              <Link href={service.href} className="service-learn-more">
+                                Learn More <i className="fas fa-arrow-right"></i>
+                              </Link>
+                            )}
                           </div>
                         </div>
                       </>
@@ -143,6 +161,11 @@ export default async function OurServicesPage() {
                             <i className={service.icon}></i>
                             <h4>{service.title}</h4>
                             <p>{service.text}</p>
+                            {service.href && (
+                              <Link href={service.href} className="service-learn-more">
+                                Learn More <i className="fas fa-arrow-right"></i>
+                              </Link>
+                            )}
                           </div>
                         </div>
                         <div className="col-lg-6">

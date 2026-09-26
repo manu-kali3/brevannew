@@ -1178,3 +1178,245 @@ section.about-us ul.nacc li p {
   0% { opacity: 0; -webkit-transform: translate3d(100%, 0, 0); transform: translate3d(100%, 0, 0); }
   100% { opacity: 1; -webkit-transform: translateZ(0); transform: translateZ(0); }
 }
+
+/* -------------------------------------------------------------
+   Individual service pages (/services/:slug)
+   ------------------------------------------------------------- */
+.service-page-section {
+  padding: 80px 0;
+}
+
+.service-overview {
+  background-color: #fff;
+}
+
+.service-overview .section-heading {
+  margin-bottom: 28px;
+}
+
+.service-overview-paragraph {
+  color: #7a7a7a;
+  font-size: 16px;
+  line-height: 30px;
+  margin-bottom: 18px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.service-overview-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.service-learn-more {
+  display: inline-block;
+  margin-top: 14px;
+  color: #ff511a;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: color 0.3s ease 0s;
+}
+
+.service-learn-more i {
+  font-size: 12px;
+  margin-left: 6px;
+  transition: transform 0.3s ease 0s;
+}
+
+.service-learn-more:hover {
+  color: #43ba7f;
+}
+
+.service-learn-more:hover i {
+  transform: translateX(4px);
+}
+
+.service-features {
+  background-color: #f2f4f7;
+}
+
+.service-feature-grid {
+  margin-top: 34px;
+}
+
+.service-feature-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 32px 26px;
+  margin-bottom: 30px;
+  height: calc(100% - 30px);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease 0s;
+  border-top: 3px solid #43ba7f;
+}
+
+.service-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.service-feature-card i {
+  color: #ff511a;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.service-feature-card h5 {
+  color: #212741;
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.service-feature-card p {
+  color: #7a7a7a;
+  font-size: 14px;
+  line-height: 25px;
+  margin: 0;
+}
+
+.service-process {
+  background-color: #fff;
+}
+
+.service-step-card {
+  background-color: #f8f9fc;
+  border-radius: 10px;
+  padding: 30px 24px;
+  margin-bottom: 30px;
+  height: calc(100% - 30px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: #43ba7f;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.service-step-card h5 {
+  color: #212741;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.service-step-card p {
+  color: #7a7a7a;
+  font-size: 14px;
+  line-height: 25px;
+  margin: 0;
+}
+
+.service-projects {
+  background-color: #f2f4f7;
+}
+
+.service-faq {
+  background-color: #fff;
+}
+
+.service-faq .section-heading {
+  margin-bottom: 30px;
+}
+
+.service-faq .accordions {
+  border-radius: 10px;
+  padding: 25px 40px;
+  background-color: #f8f9fc;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.06);
+}
+
+.service-faq .accordion-head {
+  font-size: 17px;
+  padding: 24px 0 !important;
+}
+
+@media screen and (min-width: 768px) {
+  .service-faq .accordion-head {
+    font-size: 17px;
+    padding: 1rem 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .service-page-section {
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .service-faq .accordions {
+    padding: 16px 20px;
+  }
+  .service-feature-card {
+    padding: 26px 20px;
+  }
+  .service-step-card {
+    padding: 24px 18px;
+  }
+  .service-overview-paragraph,
+  .service-overview .section-heading {
+    text-align: left;
+  }
+}
+
+/* -------------------------------------------------------------
+   Floating WhatsApp button (visible on every page)
+   ------------------------------------------------------------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #25d366;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 50px;
+  box-shadow: 0px 6px 20px rgba(37, 211, 102, 0.45);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.3s ease 0s, box-shadow 0.3s ease 0s;
+}
+
+.whatsapp-float i {
+  font-size: 24px;
+}
+
+.whatsapp-float:hover {
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0px 10px 26px rgba(37, 211, 102, 0.55);
+}
+
+.whatsapp-float-label {
+  font-size: 15px;
+}
+
+@media (max-width: 767px) {
+  .whatsapp-float {
+    bottom: 18px;
+    right: 18px;
+    padding: 13px 16px;
+  }
+  .whatsapp-float-label {
+    display: none;
+  }
+}

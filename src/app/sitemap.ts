@@ -6,6 +6,21 @@ export const SITE_URL =
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
+  const serviceSlugs = [
+    "website-design",
+    "school-management",
+    "pos-systems",
+    "e-commerce",
+    "ai-automation",
+  ];
+
+  const serviceEntries = serviceSlugs.map((slug) => ({
+    url: `${SITE_URL}/services/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   return [
     {
       url: SITE_URL,
@@ -19,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    ...serviceEntries,
     {
       url: `${SITE_URL}/about-us`,
       lastModified: now,

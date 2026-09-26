@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SiteImagesProvider from "@/components/SiteImagesProvider";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { listSiteImages } from "@/lib/site-settings";
 import { OfflineBanner, MaintenanceBanner } from "@/components/SystemStatus";
 
@@ -107,6 +108,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           {children}
           <Footer images={images} />
         </SiteImagesProvider>
+        <WhatsAppButton />
       </body>
     </html>
   );
