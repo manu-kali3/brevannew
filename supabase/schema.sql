@@ -44,6 +44,13 @@ create table if not exists public.events (
 
 alter table public.events enable row level security;
 
+-- Extra event fields used by the public /events page and the admin app.
+-- add-column-if-not-exists keeps this safe to re-run on existing projects.
+alter table public.events
+  add column if not exists is_online boolean not null default false,
+  add column if not exists is_paid boolean not null default false,
+  add column if not exists ticket_price_kes numeric;
+
 -- Public site reads events (anon key) for the /events page.
 drop policy if exists "events are publicly readable" on public.events;
 create policy "events are publicly readable"
@@ -86,6 +93,27 @@ create policy "projects are publicly readable"
 drop policy if exists "projects are manageable by service role" on public.projects;
 create policy "projects are manageable by service role"
   on public.projects
+  for all
+  to service_role
+  using (true)
+  with check (true);
+
+-- Subscribers (newsletter + event-portal signups). Written by the site's
+-- server (service role) and managed from the admin app. Private: no public
+-- read policy, so subscriber data is never exposed through the anon key.
+create table if not exists public.subscribers (
+  email text primary key,
+  name text,
+  source text,
+  unsubscribed_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+alter table public.subscribers enable row level security;
+
+drop policy if exists "subscribers are manageable by service role" on public.subscribers;
+create policy "subscribers are manageable by service role"
+  on public.subscribers
   for all
   to service_role
   using (true)
