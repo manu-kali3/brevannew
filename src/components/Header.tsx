@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSiteImages } from "@/components/SiteImagesProvider";
+import { PORTAL_URL, PORTAL_SIGNUP_URL } from "@/lib/links";
 
 export default function Header() {
   const pathname = usePathname();
@@ -177,12 +178,12 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <a href="https://clients.brevansoftwares.co.ke" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#1f7a4d", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
+                  <a href={PORTAL_URL} target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#1f7a4d", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
                     Client Portal
                   </a>
                 </li>
                 <li>
-                  <a href="https://clients.brevansoftwares.co.ke/signup" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#d63f09", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
+                  <a href={PORTAL_SIGNUP_URL} target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ background: "#d63f09", color: "#fff", padding: "8px 14px", borderRadius: 8, fontWeight: 700 }}>
                     Start Application
                   </a>
                 </li>

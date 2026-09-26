@@ -11,6 +11,8 @@ import { OfflineBanner, MaintenanceBanner } from "@/components/SystemStatus";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevansoftwares.co.ke";
 
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "GTM-NZZFG3MW";
+
 export const dynamic = "force-static";
 export const revalidate = 300;
 
@@ -70,7 +72,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NZZFG3MW');`,
+})(window,document,'script','dataLayer','${GTM_ID}');`,
           }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -111,7 +113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <body>
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-NZZFG3MW"
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}

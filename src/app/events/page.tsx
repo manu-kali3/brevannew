@@ -4,6 +4,7 @@ import CtaSection from "@/components/CtaSection";
 import { listEvents } from "@/lib/supabase";
 import { listSiteImages } from "@/lib/site-settings";
 import { safeUrl } from "@/lib/validation";
+import { EVENTS_PORTAL_URL } from "@/lib/links";
 
 export const dynamic = "force-static";
 export const revalidate = 120;
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/events" },
 };
 
-const PORTAL_URL = "https://events.brevansoftwares.co.ke";
+const PORTAL_URL = EVENTS_PORTAL_URL;
 
 function formatDate(date: string) {
   return new Date(`${date}T00:00:00`).toLocaleDateString("en-GB", {
