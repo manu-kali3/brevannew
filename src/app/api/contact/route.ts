@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { storeLead } from "@/lib/supabase";
 import { sendEmail, ownerNotification, autoresponse } from "@/lib/email";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
-import { stripCRLF } from "@/lib/validation";
+import { stripControlChars, stripCRLF } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
@@ -29,11 +29,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = stripCRLF(body.name ?? "");
-  const phone = stripCRLF(body.phone ?? "");
-  const email = stripCRLF(body.email ?? "");
-  const subject = stripCRLF(body.subject ?? "");
-  const message = (body.message ?? "").trim();
+  const name = stripControlChars(stripCRLF(body.name ?? ""));
+  const phone = stripControlChars(stripCRLF(body.phone ?? ""));
+  const email = stripControlChars(stripCRLF(body.email ?? ""));
+  const subject = stripControlChars(stripCRLF(body.subject ?? ""));
+  const message = stripControlChars((body.message ?? "").trim());
 
   if (!name || !email || !message) {
     return NextResponse.json(

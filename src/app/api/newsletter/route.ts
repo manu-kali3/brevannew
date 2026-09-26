@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { addSubscriber } from "@/lib/supabase";
 import { sendEmail, newsletterThanks } from "@/lib/email";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
-import { stripCRLF } from "@/lib/validation";
+import { stripControlChars, stripCRLF } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const email = stripCRLF(body.email ?? "");
+  const email = stripControlChars(stripCRLF(body.email ?? ""));
 
   const emailPattern = /^[^ @]+@[^ @]+$/;
   if (!email || !emailPattern.test(email) || email.length > 320) {

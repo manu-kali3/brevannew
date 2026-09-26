@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import CtaSection from "@/components/CtaSection";
 import { getPost, listPosts } from "@/lib/supabase";
 import { renderMarkdown } from "@/lib/markdown";
-import { safeUrl } from "@/lib/validation";
+import { isValidSlug, safeUrl } from "@/lib/validation";
 import { WHATSAPP_NUMBER } from "@/lib/whatsapp";
 
 export const dynamic = "force-static";
@@ -37,6 +37,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  if (!isValidSlug(slug)) return {};
   const post = await getPost(slug);
   if (!post) return {};
 
@@ -67,6 +68,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (!isValidSlug(slug)) notFound();
   const post = await getPost(slug);
   if (!post) notFound();
 
