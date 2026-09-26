@@ -67,6 +67,24 @@ export function ownerNotification(type: "quote" | "contact", fields: Record<stri
   };
 }
 
+export function newsletterThanks(email: string): EmailInput {
+  return {
+    type: "autoresponse-newsletter",
+    to: email,
+    subject: "Thanks for subscribing to Brevan Softwares",
+    text: `Thanks for subscribing to Brevan Softwares!
+
+You will now receive our updates — new services, project launches, tech tips and news from the Brevan team — straight to your inbox.
+
+For a faster response you can reach us at:
+Email: brevansoftwares@gmail.com
+Phone: +254 117 004 147
+
+Best regards,
+The Brevan Softwares Team`,
+  };
+}
+
 export function autoresponse(type: "quote" | "contact", name: string, email: string): EmailInput {
   const service = type === "quote" ? "quote request" : "message";
   return {

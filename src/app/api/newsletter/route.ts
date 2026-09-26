@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { storeEmail, addSubscriber } from "@/lib/supabase";
+import { addSubscriber } from "@/lib/supabase";
+import { sendEmail, newsletterThanks } from "@/lib/email";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { stripCRLF } from "@/lib/validation";
 
@@ -36,20 +37,18 @@ export async function POST(request: Request) {
     );
   }
 
-  // No message is actually sent here; the entry is logged for the owner.
-  const logged = await storeEmail({
-    type: "newsletter",
-    from: "Footer newsletter form",
-    to: email,
-    subject: "Newsletter subscription",
-    body: email,
-    delivered: false,
-  });
+  let anyDelivered = false;
+
+  // Send the subscriber a thank-you notification. The `emails` log is
+  // written inside sendEmail() with the real delivery status.
+  const thanked = await sendEmail(newsletterThanks(email));
+  if (thanked) anyDelivered = true;
 
   // Keep the Brevan Events subscriber list in sync for admin bulk email.
   const subscribed = await addSubscriber({ email, source: "newsletter" });
+  if (subscribed) anyDelivered = true;
 
-  if (!logged && !subscribed) {
+  if (!anyDelivered) {
     return NextResponse.json(
       { error: "Subscriptions are not configured yet. Please try again later." },
       { status: 503 }
