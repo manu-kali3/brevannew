@@ -2,11 +2,14 @@
 
 export default function GlobalError({
   error,
-  reset,
+  retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  retry: () => void;
 }) {
+  const offline =
+    typeof navigator !== "undefined" && navigator.onLine === false;
+
   return (
     <html lang="en">
       <body>
@@ -34,7 +37,7 @@ export default function GlobalError({
                 letterSpacing: 4,
               }}
             >
-              500
+              {offline ? "!" : "500"}
             </h1>
             <h2
               style={{
@@ -43,7 +46,7 @@ export default function GlobalError({
                 fontWeight: 700,
               }}
             >
-              Something went wrong
+              {offline ? "Check Your Connection" : "Something went wrong"}
             </h2>
             <p
               style={{
@@ -53,12 +56,13 @@ export default function GlobalError({
                 lineHeight: 1.7,
               }}
             >
-              An unexpected error occurred. Please refresh the page or try
-              again later.
+              {offline
+                ? "You appear to be offline. Please check your internet connection and try again."
+                : "An unexpected error occurred. Please refresh the page or try again later."}
             </p>
             <button
               type="button"
-              onClick={() => reset()}
+              onClick={() => retry()}
               style={{
                 padding: "14px 32px",
                 border: "none",

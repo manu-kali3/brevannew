@@ -14,6 +14,22 @@ export const supabase =
       })
     : null;
 
+/**
+ * True when the database is reachable with the configured service key.
+ * Used by /api/health so the client can show the "under maintenance"
+ * page the moment Supabase becomes unreachable (instead of waiting for
+ * the next static revalidation).
+ */
+export async function checkDb(): Promise<boolean> {
+  if (!supabase) return false;
+  try {
+    const { error } = await supabase.from("site_settings").select("key").limit(1);
+    return !error;
+  } catch {
+    return false;
+  }
+}
+
 export interface LeadInput {
   type: "quote" | "contact";
   name: string;

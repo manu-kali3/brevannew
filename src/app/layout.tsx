@@ -6,7 +6,7 @@ import SiteImagesProvider from "@/components/SiteImagesProvider";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import AsyncCss from "@/components/AsyncCss";
 import { listSiteImages } from "@/lib/site-settings";
-import { OfflineBanner, MaintenanceBanner } from "@/components/SystemStatus";
+import { SystemStatusGate } from "@/components/SystemStatus";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://brevansoftwares.co.ke";
@@ -61,10 +61,6 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const images = await listSiteImages();
-  const dbDown =
-    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-    (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
-      !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
@@ -122,8 +118,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        <OfflineBanner />
-        <MaintenanceBanner isDown={dbDown} />
+        <SystemStatusGate />
         <SiteImagesProvider images={images}>
           <Header />
           {children}
