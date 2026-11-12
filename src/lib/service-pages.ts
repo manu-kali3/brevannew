@@ -1,4 +1,10 @@
 import type { ImageKey } from "@/lib/site-settings";
+import {
+  SHULE_BREEZE_CONFIG,
+  SHULE_BREEZE_LOGO,
+  SHULE_BREEZE_REGISTER_URL,
+  SHULE_BREEZE_URL,
+} from "@/lib/shule-breeze";
 
 export interface ServiceFeature {
   icon: string;
@@ -14,6 +20,20 @@ export interface ServiceStep {
 export interface ServiceFaq {
   question: string;
   answer: string;
+}
+
+/** A branded product Brevan Softwares delivers for this service. */
+export interface ServiceProduct {
+  /** Short heading above the product name. */
+  kicker: string;
+  name: string;
+  logo: string;
+  tagline: string;
+  description: string;
+  highlights: { icon: string; label: string }[];
+  websiteUrl: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
 }
 
 export interface ServicePageContent {
@@ -36,6 +56,8 @@ export interface ServicePageContent {
   projectsHeading: string;
   /** Case-insensitive substrings matched against the project category. */
   projectKeywords: string[];
+  /** Branded product highlight rendered under the overview (optional). */
+  product?: ServiceProduct;
 }
 
 export const SERVICE_PAGES: ServicePageContent[] = [
@@ -159,8 +181,22 @@ export const SERVICE_PAGES: ServicePageContent[] = [
     intro: [
       "Running a school means managing students, fees, exams, staff and endless records. Our school management systems bring all of that into one simple, cloud-based platform built for how Kenyan schools actually work.",
       "From fee invoicing and M-Pesa payment tracking to exam entry, grading and automatic report cards, your admin team saves hours every week and parents get accurate, timely information.",
-      "The system runs in any browser on phones, tablets and computers, so administrators and teachers can work from the office or from home — with no special hardware required.",
+      "We deliver this through Shule Breeze, our offline-first school platform — it keeps running when the internet drops and syncs back to the cloud the moment signal returns. It works in any browser on phones, tablets and computers, so administrators and teachers can work from the office or from home with no special hardware required.",
     ],
+    product: {
+      kicker: "Our School Management Software",
+      name: SHULE_BREEZE_CONFIG.name,
+      logo: SHULE_BREEZE_LOGO,
+      tagline: SHULE_BREEZE_CONFIG.tagline,
+      description: SHULE_BREEZE_CONFIG.description,
+      highlights: [...SHULE_BREEZE_CONFIG.highlights],
+      websiteUrl: SHULE_BREEZE_URL,
+      primaryCta: { label: "Visit shulebreeze.co.ke", href: SHULE_BREEZE_URL },
+      secondaryCta: {
+        label: "Register your school free",
+        href: SHULE_BREEZE_REGISTER_URL,
+      },
+    },
     featuresHeading: "Everything Your School Needs",
     features: [
       {
