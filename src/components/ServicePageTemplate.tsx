@@ -2,6 +2,7 @@ import PageHeading from "@/components/PageHeading";
 import CtaSection from "@/components/CtaSection";
 import CalculatorSection from "@/components/CalculatorSection";
 import Accordions from "@/components/Accordions";
+import ServiceProductCard from "@/components/ServiceProductCard";
 import { safeUrl } from "@/lib/validation";
 import type { Project } from "@/lib/supabase";
 import type { SiteImages } from "@/lib/site-settings";
@@ -52,6 +53,9 @@ export default function ServicePageTemplate({
           </div>
         </div>
       </section>
+
+      {/* Branded product highlight (e.g. Shule Breeze) */}
+      {content.product && <ServiceProductCard product={content.product} />}
 
       {/* Features */}
       <section className="service-page-section service-features">

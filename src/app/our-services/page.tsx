@@ -96,7 +96,7 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
   {
     icon: "fas fa-graduation-cap",
     title: "School Management Systems",
-    text: "One cloud system for students, fees, exams, report cards and parent communication — built for how Kenyan schools actually work.",
+    text: "Shule Breeze — our offline-first school platform for learners, CBC assessment, attendance, fees and M-Pesa, report cards and parent communication. Built for how Kenyan schools actually work.",
     imageKey: "service_2",
     side: "right",
     href: "/services/school-management",
