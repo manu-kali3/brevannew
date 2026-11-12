@@ -57,7 +57,7 @@ When you change data in Supabase, edits appear within the revalidate window (or 
 
 ## Header / Nav
 
-`src/components/Header.tsx` ("use client") renders the desktop nav as a **flex bar** (`brevan.css`, `@media (min-width: 768px)`) so the menu never wraps below the logo at narrow/tablet widths. The "Pages" dropdown is a `<button>` (React 19 blocks `javascript:` URLs). Mobile uses the hamburger `.menu-trigger` with the dropdown panel styled in `brevan.css`.
+`src/components/Header.tsx` ("use client") renders the desktop nav as a **flex bar** (`brevan.css`, `@media (min-width: 1200px)`) so the menu never wraps below the logo. Below 1200px — phone **and** tablet — the nav collapses into the hamburger `.menu-trigger`; tapping it adds an `.open` class to the `<ul class="nav">`, which the `max-width: 1199px` block shows as a panel under the bar. Visibility is always decided in CSS (never with an inline `style`), because an inline `display:none` renders in the static HTML and would hide the menu on desktop. The "Pages" dropdown is a `<button>` (React 19 blocks `javascript:` URLs).
 
 ## Build & Production
 
