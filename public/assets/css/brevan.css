@@ -170,10 +170,10 @@ section[id] {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 
-/* Desktop nav: flex the whole bar so the menu never wraps below the logo.
-   With the template's floated logo + floated nav, the menu drops out of the
-   header (into the hero, "middle of the page") below ~1415px viewport width. */
-@media (min-width: 768px) {
+/* Wide desktop nav: flex the whole bar so the menu never wraps below the logo.
+   Ten nav items plus the logo only fit from ~1200px up; narrower screens use
+   the hamburger panel (see the <=1199 block). */
+@media (min-width: 1200px) {
   .header-area .main-nav {
     display: flex;
     align-items: center;
@@ -193,7 +193,10 @@ section[id] {
   .header-area .main-nav .nav {
     float: none;
     margin-top: 0 !important;
-    display: flex;
+    /* !important is required: the desktop nav must win over the mobile
+       `display:none` rule below, and over Bootstrap's `.nav` defaults,
+       whatever the DOM order of the stylesheets ends up being. */
+    display: flex !important;
     align-items: center;
     /* Keep every item on ONE row. Bootstrap's .nav class sets
        flex-wrap: wrap, which otherwise drops the last item below. */
@@ -260,13 +263,26 @@ section[id] {
 }
 
 
-/* Mobile header: keep the transparent/dark look like desktop, with a
-   polished dropdown. The hero and page headings are dark, so the white
-   logo text and menu button stay clearly visible. */
-@media (max-width: 767px) {
+/* Collapsed header (phone + tablet, everything below the 1200px desktop
+   breakpoint): keep the transparent/dark look, with a polished dropdown.
+   The hero and page headings are dark, so the white logo text and menu
+   button stay clearly visible. The panel is only shown when open. */
+@media (max-width: 1199px) {
+  /* the template only shows the hamburger below 768px */
+  .header-area .main-nav .menu-trigger {
+    display: block !important;
+    right: 15px;
+  }
+
   .header-area {
     background-color: transparent;
     background-image: none;
+  }
+
+  /* the template clips the bar (overflow:hidden) for the old in-flow menu;
+     the dropdown is absolutely positioned, so it must not be clipped */
+  .header-area .main-nav {
+    overflow: visible;
   }
 
   .header-area .main-nav .logo,
@@ -274,11 +290,30 @@ section[id] {
     color: #ffffff;
   }
 
-  /* Dropdown panel scrolls instead of overflowing */
+  /* Dropdown panel scrolls instead of overflowing. It stays hidden until
+     the hamburger is tapped (`.open`, toggled in Header.tsx) — never on
+     inline styles, which would leak into the desktop layout. */
   .header-area .main-nav .nav {
-    max-height: calc(100vh - 110px);
+    float: none;
+    width: 100%;
+    max-height: calc(100vh - 130px);
     overflow-y: auto;
     box-shadow: 0 18px 30px rgba(33, 39, 65, 0.12);
+    /* lands directly under the bar: the template pushes the nav down with
+       a 100px sticky margin, which would otherwise leave a gap */
+    margin-top: 0 !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none !important;
+    z-index: 1000;
+    background-color: #ffffff;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .header-area .main-nav .nav.open {
+    display: block !important;
   }
 
   .header-area .main-nav .nav li {

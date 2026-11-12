@@ -50,7 +50,9 @@ export default function Header() {
                 <span className="logo-text">Brevan Softwares</span>
               </Link>
 
-              <ul className="nav" style={{ display: menuOpen ? "block" : "none" }}>
+              {/* No inline display here: CSS decides (always visible on
+                  desktop, opt-in panel via .open on mobile). */}
+              <ul className={`nav${menuOpen ? " open" : ""}`}>
                 <li className="scroll-to-section">
                   <Link
                     href="/"
