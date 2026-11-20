@@ -11,7 +11,7 @@ const SITE_URL =
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   description:
-    "Brevan Softwares is a Kenyan technology initiative by Emmanuel Kiplangat offering AI automation, website design, WordPress, POS, e-commerce, real estate platforms and graphic design for local businesses, schools and communities.",
+    "Brevan Softwares is a Kenyan technology initiative by Emmanuel Kiplangat offering AI automation, website design, POS, e-commerce, real estate platforms and graphic design for local businesses, schools and communities.",
 };
 
 export default function Home() {

@@ -5,7 +5,7 @@ import CtaSection from "@/components/CtaSection";
 import Tabs from "@/components/Tabs";
 import { listSiteImages, type ImageKey } from "@/lib/site-settings";
 
-type MissionImageKey = "service_details_1" | "service_details_2" | "service_details_3";
+type MissionImageKey = "mission_ai" | "mission_community" | "mission_education";
 
 export const metadata: Metadata = {
   title: "Web Design, AI Automation & Software Services in Kenya",
@@ -19,20 +19,20 @@ export const revalidate = 300;
 const missionTabs: { label: string; imageKey: MissionImageKey }[] = [
   {
     label: "AI & Tech Integration",
-    imageKey: "service_details_1",
+    imageKey: "mission_ai",
   },
   {
     label: "Community Digitalization",
-    imageKey: "service_details_2",
+    imageKey: "mission_community",
   },
   {
     label: "Education & Innovation",
-    imageKey: "service_details_3",
+    imageKey: "mission_education",
   },
 ];
 
 const missionContent: Record<MissionImageKey, { heading: string; body: string; points: string[] }> = {
-  service_details_1: {
+  mission_ai: {
     heading: "Practical AI automation for schools and enterprises",
     body: "We bring practical AI automation solutions and future-ready skills to schools and local enterprises, helping them work smarter with technology.",
     points: [
@@ -41,7 +41,7 @@ const missionContent: Record<MissionImageKey, { heading: string; body: string; p
       "AI tools and skills for your team",
     ],
   },
-  service_details_2: {
+  mission_community: {
     heading: "Digital tools for micro-enterprises",
     body: "We promote digital tools for micro-enterprises and bridge the technology gap between rural and urban sectors so every business can compete.",
     points: [
@@ -50,7 +50,7 @@ const missionContent: Record<MissionImageKey, { heading: string; body: string; p
       "Real estate listing platforms",
     ],
   },
-  service_details_3: {
+  mission_education: {
     heading: "Equipping learners and TVET students",
     body: "We equip learners and TVET students with technical proficiencies through practical training in web design, programming and AI.",
     points: [
@@ -66,7 +66,7 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     icon: "fas fa-laptop-code",
     title: "Website Design",
     text: "We design and develop custom, modern websites that look great and work perfectly on mobile, tablet and desktop. From simple business sites to content-rich platforms, we build websites that help your business grow and reach more customers online.",
-    imageKey: "service_1",
+    imageKey: "service_website",
     side: "right",
     href: "/services/website-design",
   },
@@ -74,7 +74,7 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     icon: "fas fa-cash-register",
     title: "POS Systems",
     text: "Modern Point of Sale systems for shops, restaurants and retail — stock control, M-Pesa payments, receipts and reports in one fast, offline-ready system.",
-    imageKey: "service_2",
+    imageKey: "service_pos",
     side: "left",
     href: "/services/pos-systems",
   },
@@ -82,7 +82,7 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     icon: "fas fa-shopping-cart",
     title: "E-Commerce Solutions",
     text: "Launch a secure online store with easy product management, mobile money and card payments, and order tracking. We help Kenyan businesses sell their products online to customers everywhere.",
-    imageKey: "service_3",
+    imageKey: "service_ecommerce",
     side: "right",
     href: "/services/e-commerce",
   },
@@ -90,14 +90,14 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     icon: "fas fa-building",
     title: "Real Estate Platforms",
     text: "We build property listing websites and platforms for real estate agents, landlords and developers. Showcase properties, manage listings and connect with serious buyers and tenants online.",
-    imageKey: "service_1",
+    imageKey: "service_real_estate",
     side: "left",
   },
   {
     icon: "fas fa-graduation-cap",
     title: "School Management Systems",
     text: "Shule Breeze — our offline-first school platform for learners, CBC assessment, attendance, fees and M-Pesa, report cards and parent communication. Built for how Kenyan schools actually work.",
-    imageKey: "service_2",
+    imageKey: "service_school",
     side: "right",
     href: "/services/school-management",
   },
@@ -105,14 +105,14 @@ const services: { icon: string; title: string; text: string; imageKey: ImageKey;
     icon: "fas fa-palette",
     title: "Graphic Design & Branding",
     text: "Logos, brand identities, posters, flyers, banners and marketing materials that make your business look professional and memorable. A strong brand builds trust and sets you apart from competitors.",
-    imageKey: "service_3",
+    imageKey: "service_design",
     side: "left",
   },
   {
     icon: "fas fa-robot",
     title: "AI Automation",
     text: "Bring artificial intelligence into your daily operations with chatbots, automated workflows, smart content and data dashboards. We help schools and local enterprises save time, cut costs and stay ahead of the digital curve.",
-    imageKey: "service_1",
+    imageKey: "service_ai",
     side: "right",
     href: "/services/ai-automation",
   },
@@ -126,7 +126,7 @@ export default async function OurServicesPage() {
       <PageHeading
         title="Our Services"
         kicker="What We Do"
-        subtitle="Web design, WordPress, POS systems, e-commerce, real estate platforms, graphic design and AI automation — all crafted to help your business grow."
+        subtitle="Web design, POS systems, e-commerce, real estate platforms, graphic design and AI automation — all crafted to help your business grow."
         image={images.hero_services}
       />
       <section className="main-services">

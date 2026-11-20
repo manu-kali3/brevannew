@@ -11,9 +11,9 @@ const services: Service[] = [
     text: "Custom, modern websites designed and developed to grow your business and serve your customers online.",
   },
   {
-    icon: "fab fa-wordpress",
-    title: "WordPress",
-    text: "Professional WordPress websites, themes and plugins with easy content management and full maintenance support.",
+    icon: "fas fa-graduation-cap",
+    title: "School Management",
+    text: "Shule Breeze — offline-first CBC school platform for learners, attendance, fees, M-Pesa and report cards.",
   },
   {
     icon: "fas fa-cash-register",
@@ -41,7 +41,7 @@ const services: Service[] = [
     text: "Chatbots, workflow automation and AI tools that save you time, reduce costs and boost productivity.",
   },
   {
-    icon: "fas fa-graduation-cap",
+    icon: "fas fa-chalkboard-user",
     title: "Digital Training",
     text: "Hands-on tech and AI skills for learners, TVET students and business teams ready for the digital economy.",
   },

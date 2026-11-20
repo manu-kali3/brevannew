@@ -205,11 +205,11 @@ create policy "site settings are manageable by service role"
   using (true)
   with check (true);
 
--- Seed default values. WebP versions (85-95% smaller than the JPG
--- originals) are used because these values override the code fallbacks
--- at runtime, and the JPG heroes (~350 KB each) dominated LCP on slow
--- connections. `do update` lets you re-run this file to upgrade an
--- existing project to the lighter images.
+-- Seed default values. These rows override the code fallbacks at runtime,
+-- so the key set here must match IMAGE_KEYS in src/lib/site-settings.ts:
+-- every current key is seeded below and retired keys are deleted right
+-- after the upsert. `do update` lets you re-run this file to upgrade an
+-- existing project in place.
 insert into public.site_settings (key, value) values
   ('logo', '/assets/images/brevan-logo.jpg'),
   ('hero_1', '/assets/images/slide-01.webp'),
@@ -221,12 +221,16 @@ insert into public.site_settings (key, value) values
   ('hero_about', '/assets/images/slide-01.webp'),
   ('hero_contact', '/assets/images/slide-02.webp'),
   ('hero_privacy', '/assets/images/slide-03.webp'),
-  ('service_1', '/assets/images/service-image-01.webp'),
-  ('service_2', '/assets/images/service-image-02.webp'),
-  ('service_3', '/assets/images/service-image-03.webp'),
-  ('service_details_1', '/assets/images/service-details-01.webp'),
-  ('service_details_2', '/assets/images/service-details-02.webp'),
-  ('service_details_3', '/assets/images/service-details-03.webp'),
+  ('service_website', '/assets/images/service-web-design.webp'),
+  ('service_pos', '/assets/images/service-pos.webp'),
+  ('service_ecommerce', '/assets/images/service-ecommerce.webp'),
+  ('service_real_estate', '/assets/images/service-real-estate.webp'),
+  ('service_school', '/assets/images/service-school-management.webp'),
+  ('service_design', '/assets/images/service-graphic-design.webp'),
+  ('service_ai', '/assets/images/service-ai-automation.webp'),
+  ('mission_ai', '/assets/images/mission-ai.webp'),
+  ('mission_community', '/assets/images/mission-community.webp'),
+  ('mission_education', '/assets/images/mission-education.webp'),
   ('about_image', '/assets/images/about-left-image.webp'),
   ('hero_blog', '/assets/images/slide-02.webp'),
   ('partner_logo', '/assets/images/client-01.png'),
@@ -235,3 +239,12 @@ insert into public.site_settings (key, value) values
   ('bg_calculator', '/assets/images/calculator-bg.webp'),
   ('bg_heading', '/assets/images/heading-bg.webp')
 on conflict (key) do update set value = excluded.value;
+
+-- Keys retired when the stock template artwork was replaced by the real
+-- service imagery. Without this the old rows survive and shadow the new
+-- defaults on every page load.
+delete from public.site_settings
+where key in (
+  'service_1', 'service_2', 'service_3',
+  'service_details_1', 'service_details_2', 'service_details_3'
+);
