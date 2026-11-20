@@ -14,7 +14,6 @@ const quickLinks = [
 
 const services = [
   { label: "Website Design", href: "/services/website-design" },
-  { label: "WordPress", href: "/our-services" },
   { label: "POS Systems", href: "/services/pos-systems" },
   { label: "E-Commerce Solutions", href: "/services/e-commerce" },
   { label: "School Management", href: "/services/school-management" },
