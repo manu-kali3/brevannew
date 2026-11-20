@@ -51,7 +51,10 @@ The site is **statically generated with ISR** (no `force-dynamic`):
 
 - Pages export `revalidate` (300s; events 120s).
 - `listSiteImages` (300s), `listEvents` (120s), `listProjects` (300s) are wrapped in `unstable_cache`.
-- `vercel.json` adds immutable cache headers for `/assets`, `/vendor`, `/_next/static`.
+- `next.config.ts` sets the media cache headers: `/assets/images` is `immutable`
+  for a year, `/assets/css` is 1h + `stale-while-revalidate`, `/vendor` a year.
+  (There is no `vercel.json` in the repo — the `headers()` block is the single
+  source of truth, so don't add conflicting rules in the dashboard.)
 
 When you change data in Supabase, edits appear within the revalidate window (or force a redeploy).
 
